@@ -1,14 +1,16 @@
 // GLOBAL VARIABLES -------------------------------------------------------
 
 // DOM SELECTORS ----------------------------------------------------------
+var searchBar = document.getElementById("search-bar");
+var searchButton = document.getElementById("search-button");
 
 // FUNCTIONS --------------------------------------------------------------
 
 // EVENT LISTENERS --------------------------------------------------------
 
 // SCRYFALL API
-function getPrice() {
-    fetch("https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy=doomblade").then(
+function getPrice(card) {
+    fetch("https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy=" + card).then(
         function (response) {
         return response.json();
       }).then(function (data) {
@@ -16,4 +18,6 @@ function getPrice() {
     });
 }
 
-getPrice();
+searchButton.addEventListener("click", function () {
+    getPrice(searchBar.value);
+});
