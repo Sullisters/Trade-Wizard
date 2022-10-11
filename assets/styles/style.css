@@ -24,7 +24,10 @@
 } 
 
 /* Element Styling */
-
+img{
+    width: auto;
+    height: auto;
+}
 body{
     background-color: salmon;
 }
