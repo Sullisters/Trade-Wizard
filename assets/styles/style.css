@@ -26,10 +26,15 @@
 /* Element Styling */
 
 body{
-    background-color: salmon;
+    background-color: var(--accent-one);
 }
 
 /* Class Styling */
+
+.userList {
+    background-color: var(--accent-two);
+    height: 50vh;
+}
 
 /* ID Styling */
 
