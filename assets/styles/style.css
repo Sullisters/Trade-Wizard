@@ -29,13 +29,18 @@ img{
     height: auto;
 }
 body{
-    background-color: salmon;
+    background-color: var(--accent-one);
 }
 
 /* Class Styling */
 
-/* ID Styling */
+.userList {
+    background-color: var(--accent-two);
+    height: 50vh;
+    margin: 5vh 2vw;
+}
 
+/* ID Styling */
 
 /* Media Queries */
 
