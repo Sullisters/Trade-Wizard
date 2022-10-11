@@ -3,6 +3,7 @@
 // DOM SELECTORS ----------------------------------------------------------
 var searchBar = document.getElementById("search-bar");
 var searchButton = document.getElementById("search-button");
+var cardImg = document.getElementById("card-img");
 
 // FUNCTIONS --------------------------------------------------------------
 
@@ -15,6 +16,8 @@ function getPrice(card) {
         return response.json();
       }).then(function (data) {
         console.log(data);
+        cardImg.setAttribute("src", data.image_uris.normal);
+        cardImg.setAttribute("alt", data.name); 
     });
 }
 
