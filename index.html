@@ -30,6 +30,8 @@
       <input type="text" placeholder="Enter a card name..." id="search-bar">
       <button id="search-button">Search</button>
       
+      <button id="add-item-one" class="js-modal-trigger" data-target="modal-js-example">Add Item</button>
+      <button id="add-item-two" class="js-modal-trigger" data-target="modal-js-example">Add Item</button>
     <!-- User 1 -->
     <!-- List of Cards to be Traded -->    
     <div class="columns">
@@ -49,6 +51,22 @@
     <!-- Trade Summary -->
     </main>
     <!-- Footer -->
+    <!-- BULMA MODAL -->
+    <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+          <div class="box">
+            <p>Modal JS example</p>
+            <form action="">
+                <input type="text">
+            </form>
+            <!-- Your content -->
+          </div>
+        </div>
+      
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
     <!-- JS Link -->
    <script src="./assets/scripts/script.js"></script>
 </body>
