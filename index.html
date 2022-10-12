@@ -27,17 +27,35 @@
     <!-- Main/Trade Section -->
     <main>
     <!-- Search Bar -->
+      
       <button id="add-item-one" class="js-modal-trigger" data-target="modal-js-example">Add Item</button>
       <button id="add-item-two" class="js-modal-trigger" data-target="modal-js-example">Add Item</button>
-    <!-- User 1 -->
-    <!-- List of Cards to be Traded -->
-    <div>
-    <img id="card-img" src="" alt="">
+      
+      <div class="columns">
+      <!-- User 1 -->
+      <!-- List of Cards to be Traded -->    
+        <div class="column is-one-third userList">
+          <ul></ul>
+        </div>
+      <!--Card preview-->
+        <div class="column">
+          <img id="card-img" src="" alt="">
+        </div>
+      <!-- User 2 -->
+      <!-- List of Cards to be Traded -->
+        <div class="column is-one-third userList">
+          <ul></ul>
+        </div>
+      </div>
+    <!-- Card Price -->
+    <div class="columns">
+      <div class="column is-2 is-offset-5 cardPrice"></div>
     </div>
-    <!-- User 2 -->
-    <!-- List of Cards to be Traded -->
-
     <!-- Trade Summary -->
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter tradeSummary"></div>
+    </div>
+
     </main>
     <!-- Footer -->
     <!-- BULMA MODAL -->
