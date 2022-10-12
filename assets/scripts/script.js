@@ -33,6 +33,7 @@ var cardListOne = document.getElementById("card-list-one");
 var cardListTwo = document.getElementById("card-list-two");
 // Trade Summary
 var tradeDiffDisplay = document.getElementById("trade-diff");
+var tradeSumBackground = document.querySelector(".tradeSummary")
 
 
 // FUNCTIONS --------------------------------------------------------------
@@ -70,11 +71,13 @@ function deleteItem(event) {
 // Updates the trade summary.
 function updateSummary() {
   // Update the trade difference and round it to a cent.
-  if (userOneValue >= userTwoValue){
+  if (userOneValue > userTwoValue){
     tradeDifference = (userOneValue - userTwoValue).toFixed(2);
+    tradeSumBackground.setAttribute("id", "gradient-two");
     tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 2's favor.";
   } else{
   tradeDifference = (userTwoValue - userOneValue).toFixed(2);
+  tradeSumBackground.setAttribute("id", "gradient-one");
   tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
   }
 }
