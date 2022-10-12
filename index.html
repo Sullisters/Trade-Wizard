@@ -36,7 +36,7 @@
       <!-- User 1 -->
       <!-- List of Cards to be Traded -->    
         <div class="column is-one-third userList">
-          <ul></ul>
+          <ul id="card-list-one"></ul>
         </div>
       <!--Card preview-->
         <div class="column">
@@ -45,16 +45,19 @@
       <!-- User 2 -->
       <!-- List of Cards to be Traded -->
         <div class="column is-one-third userList">
-          <ul></ul>
+          <ul id='card-list-two'></ul>
         </div>
       </div>
     <!-- Card Price -->
     <div class="columns">
-      <div class="column is-2 is-offset-5 cardPrice"></div>
+      <div class="column is-2 is-offset-5 cardPrice">
+        <p id="display-card-price"></p>
+      </div>
     </div>
     <!-- Trade Summary -->
     <div class="columns">
-      <div class="column is-half is-offset-one-quarter tradeSummary"></div>
+      <div class="column is-half is-offset-one-quarter tradeSummary">
+      </div>
     </div>
 
     </main>
@@ -76,18 +79,18 @@
             <form action="" id="search-form">
                 <input type="text" id="search-bar" placeholder="Enter a card name...">
                 <br>
-                <label for="foil-check">Foil: </label>
+                <!-- <label for="foil-check">Foil: </label>
                 <input id="foil-check" type="checkbox">
-                <br>
-                <label for="condition-check">Condition: </label>
+                <br> -->
+                <!-- <label for="condition-check">Condition: </label>
                 <select name="" id="condition-check">
                     <option value="1">Damaged</option>
                     <option value="2">Well Played</option>
                     <option value="3">Played</option>
                     <option value="4">Lightly Played</option>
                     <option value="5" selected>Mint</option>
-                </select>
-                <button id="confirm-card">Confirm</button>
+                </select> -->
+                <p id="confirm-card">Confirm</p>
             </form>
             </div>
 
