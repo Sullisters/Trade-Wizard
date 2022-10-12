@@ -120,6 +120,15 @@ right: 5%;
     align-items: center;
 }
 
+/* gradients */
+#gradient-one{
+    background-image: linear-gradient(to left, red, green);
+}
+
+#gradient-two{
+    background-image: linear-gradient(to right, red, green);
+}
+
 /* Media Queries */
 
 /* Animations */
