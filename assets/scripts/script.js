@@ -43,7 +43,7 @@ function constructURL(search) {
   url = "https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy="+ search;
 }
 
-// Updates modal preview based on card entered to search bar.
+// Updates modal preview based on search bar contents.
 function getPrice(url) {
   fetch(url).then(
       function (response) {
@@ -56,8 +56,16 @@ function getPrice(url) {
 }
 
 function deleteItem(event) {
-  let deleteThis = event.path[1];
-  deleteThis.remove();
+  // Subtract the value of the removed card from the appropriate user.
+  if (event.path[2].id == "card-list-one") {
+    userOneValue -= Number((event.path[1].children[1].innerText).substring(1));
+  } else {
+    userTwoValue -= Number((event.path[1].children[1].innerText).substring(1));
+  }
+  // Remove the list item associated with the remove button pressed.
+  event.path[1].remove();
+  // Update the summary box with the new values.
+  updateSummary();
 }
 
 // Updates the trade summary.
@@ -82,7 +90,7 @@ searchBar.addEventListener("keyup", function () {
   getPrice(url);
 })
 
-// STORES BUTTON PRESSED IN currentList VAR
+// Tracks which User's button was pressed.
 addItemOne.addEventListener("click", function (event) {
   if (event.target.id === "add-item-one") {
     currentList = cardListOne;
