@@ -7,11 +7,13 @@ var addItemTwo = document.getElementById("add-item-two");
 // Main Card Preview
 var cardImg = document.getElementById("card-img");
 // Modal Card Preview
-var modalPreview = document.getElementById("modal-preview")
+var modalPreview = document.getElementById("modal-preview");
+var pricePreview = document.getElementById("price-preview");
 // Modal Search
 var searchBar = document.getElementById("search-bar");
 var foilCheck = document.getElementById("foil-check");
-var conditionCheck = document.getElementById("condition-check")
+var conditionCheck = document.getElementById("condition-check");
+var confirmCard = document.getElementById("confirm-card");
 
 // FUNCTIONS --------------------------------------------------------------
 
@@ -23,6 +25,7 @@ function getPrice(card) {
     }).then(function (data) {
       modalPreview.setAttribute("src", data.image_uris.normal);
       modalPreview.setAttribute("alt", data.name);
+      pricePreview.textContent = "$" + data.prices.usd;
       console.log(data);
   });
 }
@@ -32,6 +35,10 @@ function getPrice(card) {
 // Modal preview will update while card is being typed.
 searchBar.addEventListener("keyup", function () {
   getPrice(searchBar.value)
+})
+
+// When the user confirms their card in the modal.
+confirmCard.addEventListener("click", function () {
 })
 
 // MODEL JS (BULMA)

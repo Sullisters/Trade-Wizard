@@ -66,13 +66,13 @@
         <div class="modal-content">
             <!-- CONTENT -->
           <div class="box">
-            <p>Add a Card</p>
+            <p id="modal-heading">Add a Card</p>
             <div id="form-contain">
             <!-- Card Preview -->
             <div id='preview-section'>
                 <img id='modal-preview' src="" alt="">
+                <p id="price-preview"></p>
             </div>
-
             <form action="" id="search-form">
                 <input type="text" id="search-bar" placeholder="Enter a card name...">
                 <br>
@@ -87,6 +87,7 @@
                     <option value="4">Lightly Played</option>
                     <option value="5" selected>Mint</option>
                 </select>
+                <button id="confirm-card">Confirm</button>
             </form>
             </div>
 

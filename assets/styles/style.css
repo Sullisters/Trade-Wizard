@@ -31,6 +31,9 @@ img{
 body{
     background-color: var(--accent-one);
 }
+label {
+    display: inline-block;
+}
 
 /* Class Styling */
 
@@ -69,8 +72,10 @@ position: absolute;
 right: 5%;
 }
 
-#modal-preview {
-    width: 40%;
+#modal-heading {
+    /* Deco */
+    text-align: center;
+    font-family: var(--heading-font);
 }
 
 #form-contain {
@@ -82,10 +87,38 @@ right: 5%;
     justify-content: space-evenly;
     align-items: center;
 }
-
-#card-img {
-    margin: -5vh 0;
+#preview-section {
+    /* Layout */
+    height: 90%;
+    /* Flex Settings */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
+
+#modal-preview {
+    width: 60%;
+}
+
+#price-preview {
+    width: 50%;
+    /* Deco */
+    text-align: center;
+}
+
+/* Modal Form Styling */
+
+#search-form {
+    /* Layout */
+    height: 65%;
+    /* Flex Settings */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 /* Media Queries */
 
 /* Animations */
