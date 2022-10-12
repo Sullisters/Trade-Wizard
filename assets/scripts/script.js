@@ -62,8 +62,13 @@ function deleteItem(event) {
 // Updates the trade summary.
 function updateSummary() {
   // Update the trade difference and round it to a cent.
-  tradeDifference = (userOneValue - userTwoValue).toFixed(2);
-  tradeDiffDisplay.textContent = "Difference: $" + tradeDifference;
+  if (userOneValue >= userTwoValue){
+    tradeDifference = (userOneValue - userTwoValue).toFixed(2);
+    tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 2's favor.";
+  } else{
+  tradeDifference = (userTwoValue - userOneValue).toFixed(2);
+  tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
+  }
 }
 
 // EVENT LISTENERS --------------------------------------------------------
