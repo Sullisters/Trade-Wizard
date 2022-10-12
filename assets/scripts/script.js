@@ -1,5 +1,17 @@
 // GLOBAL VARIABLES -------------------------------------------------------
 
+// Current URL
+var url;
+var currentList;
+
+// Trade Value Variables
+// User 1
+var userOneValue = 0;
+// User 2
+var userTwoValue = 0;
+// Trade Difference
+var tradeDifference;;
+
 // DOM SELECTORS ----------------------------------------------------------
 // New Item Buttons
 var addItemOne = document.getElementById("add-item-one");
@@ -19,9 +31,8 @@ var confirmCard = document.getElementById("confirm-card");
 // User Card Lists
 var cardListOne = document.getElementById("card-list-one");
 var cardListTwo = document.getElementById("card-list-two");
-// Current URL
-var url;
-var currentList;
+// Trade Summary
+var tradeDiffDisplay = document.getElementById("trade-diff");
 
 
 // FUNCTIONS --------------------------------------------------------------
@@ -40,20 +51,22 @@ function getPrice(url) {
       modalPreview.setAttribute("src", data.image_uris.normal);
       modalPreview.setAttribute("alt", data.name);
       pricePreview.textContent = "$" + data.prices.usd;
-      console.log(data);
   });
 }
 
 function deleteItem(event) {
-  console.log(event.path[1]);
   let deleteThis = event.path[1];
   deleteThis.remove();
 }
 
+// Updates the trade summary.
+function updateSummary() {
+  // Update the trade difference and round it to a cent.
+  tradeDifference = (userOneValue - userTwoValue).toFixed(2);
+  tradeDiffDisplay.textContent = "Difference: $" + tradeDifference;
+}
+
 // EVENT LISTENERS --------------------------------------------------------
-
-// Deletes item When "X" button is clicked
-
 
 // Modal preview will update while card is being typed.
 searchBar.addEventListener("keyup", function () {
@@ -66,20 +79,16 @@ addItemOne.addEventListener("click", function (event) {
   if (event.target.id === "add-item-one") {
     currentList = cardListOne;
   }
-  console.log(currentList);
 })
 
 addItemTwo.addEventListener("click", function (event) {
   if (event.target.id === "add-item-two") {
     currentList = cardListTwo;
   }
-  console.log(currentList);
 })
 
 // MODEL JS (BULMA)
-
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("heard");
     // Functions to open and close a modal
     function openModal($el) {
       $el.classList.add('is-active');
@@ -109,43 +118,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // When the user confirms their card in the modal. Adds to page
-confirmCard.addEventListener("click", function (event) {
-  var side = event.target;
-  console.log(side);
+// When a user confirms their card choice in the modal view.
+confirmCard.addEventListener("click", function () {
+  // Use our constructed URL to grab the correct card.
   fetch(url).then(
     function (response) {
     return response.json();
   }).then(function (data) {
-      // Create the master list item
+  // Create the master list item.
   var newCard = document.createElement("li");
+  // Format the list item to properly display its contents.
   newCard.style.display ="flex";
   newCard.style.justifyContent = "space-evenly";
   newCard.style.alignItems = "center";
   newCard.style.border = "3px solid black";
-  // Create the name item
+  // Create the list item content elements.
   var newName = document.createElement("p");
-  newName.style.width = "auto";
-  // Set Content
-  newName.textContent = data.name;
-  // Create price item
   var newPrice = document.createElement("p");
-  newPrice.style.width = "auto";
-  // Set Content
-  newPrice.textContent = "$" + data.prices.usd;
   var removeItem = document.createElement("button");
+  // Set list item content.
+  newName.textContent = data.name;
+  newPrice.textContent = "$" + data.prices.usd;
   removeItem.textContent = "Delete";
-  removeItem.style.width = "auto";
   removeItem.addEventListener("click", deleteItem)
   // Append
   newCard.append(newName);
   newCard.append(newPrice);
   newCard.append(removeItem);
+  // Append the master list to the page.
   currentList.appendChild(newCard);
-  console.log("made it");
+  // Adds the price of the card to the appropriates player trade value.
+  if (currentList === cardListOne) {
+    userOneValue += Number(data.prices.usd);
+  } else if (currentList === cardListTwo) {
+    userTwoValue += Number(data.prices.usd);
+  }
+  // Update the main trade summary.
+  updateSummary();
+  // Update main card display to the cards that was confirmed last.
   cardImg.setAttribute("src", data.image_uris.normal)
   cardImg.setAttribute("alt", data.name);
   cardPreviewPrice.textContent = "$" + data.prices.usd;
+  // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
 });

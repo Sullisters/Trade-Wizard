@@ -30,6 +30,7 @@ img{
 }
 body{
     background-color: var(--accent-one);
+    /* height: 101vh; */
 }
 label {
     display: inline-block;
