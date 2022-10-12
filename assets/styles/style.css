@@ -34,14 +34,34 @@ body{
 
 /* Class Styling */
 
+/* User List Elements */
 .userList {
     background-color: var(--accent-two);
     height: 50vh;
     margin: 5vh 2vw;
 }
 
-/* ID Styling */
+/* Trade Summary Element */
+.tradeSummary {
+    background-color: var(--accent-two);
+    height: 15vh;
+    margin: 5vh;
+}
 
+.cardPrice {
+    background-color: var(--accent-two);
+    height: 7vh;
+    margin: -5vh;
+}
+
+/* ID Styling */
+#add-item-one {
+
+}
+
+#add-item-two {
+    
+}
 /* Media Queries */
 
 /* Animations */
