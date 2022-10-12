@@ -43,25 +43,30 @@ body{
 .userList {
     background-color: var(--accent-two);
     height: 50vh;
-    margin: 5vh 2vw;
+    margin: 1vh 2vw;
 }
 
 /* Trade Summary Element */
 .tradeSummary {
     background-color: var(--accent-two);
-    height: 15vh;
-    margin: 5vh;
+    height: 5vh;
+    margin: 2vh;
 }
 
 .cardPrice {
     background-color: var(--accent-two);
     height: 7vh;
-    margin: -5vh;
+    margin: 5vh 0 0 0;
 }
 
 /* ID Styling */
 #add-item-one {
+margin: 0 0 0 5vw;
+}
 
+#add-item-two {
+position: absolute;
+right: 5%;
 }
 
 #modal-preview {
@@ -77,8 +82,9 @@ body{
     justify-content: space-evenly;
     align-items: center;
 }
-#add-item-two {
-    
+
+#card-img {
+    margin: -5vh 0;
 }
 /* Media Queries */
 
