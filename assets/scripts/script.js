@@ -1,23 +1,40 @@
 // GLOBAL VARIABLES -------------------------------------------------------
 
 // DOM SELECTORS ----------------------------------------------------------
+// New Item Buttons
 var addItemOne = document.getElementById("add-item-one");
 var addItemTwo = document.getElementById("add-item-two");
+// Main Card Preview
 var cardImg = document.getElementById("card-img");
+// Modal Card Preview
+var modalPreview = document.getElementById("modal-preview")
+// Modal Search
+var searchBar = document.getElementById("search-bar");
+var foilCheck = document.getElementById("foil-check");
+var conditionCheck = document.getElementById("condition-check")
 
 // FUNCTIONS --------------------------------------------------------------
 
+// Updates modal preview based on card entered to search bar.
+function getPrice(card) {
+  fetch("https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy="+ card).then(
+      function (response) {
+      return response.json();
+    }).then(function (data) {
+      modalPreview.setAttribute("src", data.image_uris.normal);
+      modalPreview.setAttribute("alt", data.name);
+      console.log(data);
+  });
+}
+
 // EVENT LISTENERS --------------------------------------------------------
 
-addItemOne.addEventListener("click", function () {
-    openModal();
-});
-
-addItemTwo.addEventListener("click", function () {
-    openModal();    
+// Modal preview will update while card is being typed.
+searchBar.addEventListener("keyup", function () {
+  getPrice(searchBar.value)
 })
 
-// NEW JAVASCRIPT FROM JRD-MODAL-BUTTON (BULMA)
+// MODEL JS (BULMA)
 
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
