@@ -17,6 +17,11 @@ var confirmCard = document.getElementById("confirm-card");
 
 // FUNCTIONS --------------------------------------------------------------
 
+// Construct URL
+function constructURL(condition) {
+  var url;
+}
+
 // Updates modal preview based on card entered to search bar.
 function getPrice(card) {
   fetch("https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy="+ card).then(
@@ -39,6 +44,13 @@ searchBar.addEventListener("keyup", function () {
 
 // When the user confirms their card in the modal.
 confirmCard.addEventListener("click", function () {
+  // Create the list item
+  var newCard = document.createElement("li");
+  // Create the name item
+  var newName = document.createElement("p");
+  // Set Content
+  newName.textContent = data
+
 })
 
 // MODEL JS (BULMA)
@@ -93,6 +105,13 @@ When I click add item:
     When I confirm my selection:
         The modal closes.
         My selection is rendered to the appropriate side of the screen.
+              We construct a url based on the choices selected.
+              We construct an HTML element to host the new information
+                      - Card Price
+                      - Card Name
+                      - Condition
+                      - Foil (or no)
+                      - an X to delete the item.
         Variables are updated to reflect the new card.
 
 When I click a card on either list:
