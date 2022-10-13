@@ -63,6 +63,7 @@ label {
     margin: 5vh 0 0 0;
 }
 
+
 /* ID Styling */
 #add-item-one {
 margin: 0 0 0 5vw;
@@ -127,6 +128,9 @@ right: 5%;
 
 #gradient-two{
     background-image: linear-gradient(to right, red, green);
+}
+#equal-background{
+    background-image: green;
 }
 
 /* Media Queries */
