@@ -44,7 +44,7 @@
           <ul id="card-list-one"></ul>
         </div>
       <!--Card preview-->
-        <div class="column">
+        <div class="column" id="card-preview">
           <img id="card-img" src="" alt="">
         </div>
       <!-- User 2 -->
@@ -54,9 +54,9 @@
         </div>
       </div>
     <!-- Card Price -->
-    <div class="columns">
-      <div class="column is-2 is-offset-5 cardPrice">
-        <p id="display-card-price"></p>
+    <div class="columns cardPreview">
+      <div class="column is-2 is-offset-5 cardPrice level is-mobile">
+        <p id="display-card-price" class="level-item"></p>
       </div>
     </div>
     <!-- Trade Summary -->
@@ -99,7 +99,7 @@
                     <option value="4">Lightly Played</option>
                     <option value="5" selected>Mint</option>
                 </select> -->
-                <p id="confirm-card">Confirm</p>
+                <p class="button" id="confirm-card">Confirm</p>
             </form>
             </div>
 
