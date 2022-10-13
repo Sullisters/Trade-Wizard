@@ -36,6 +36,9 @@ label {
 
 li {
     color: var(--light-main);
+    background-color: var(--accent-one);
+    border-radius: 5px;
+    margin-bottom: 1vh;
 }
 
 /* Class Styling */
