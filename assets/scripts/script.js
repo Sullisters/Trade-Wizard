@@ -35,7 +35,8 @@ var cardListTwo = document.getElementById("card-list-two");
 // Trade Summary
 var tradeDiffDisplay = document.getElementById("trade-diff");
 var tradeSumBackground = document.querySelector(".tradeSummary")
-var userTotalsDisplay = document.getElementById("user-totals")
+var userOneTotalDisplay = document.getElementById("user-one-total")
+var userTwoTotalDisplay = document.getElementById("user-two-total")
 
 
 // FUNCTIONS --------------------------------------------------------------
@@ -72,21 +73,23 @@ function deleteItem(event) {
 
 // Updates the trade summary.
 function updateSummary() {
-  // Update the trade difference and round it to a cent.
   if (userOneValue > userTwoValue){
     tradeDifference = (userOneValue - userTwoValue).toFixed(2);
     tradeSumBackground.setAttribute("id", "gradient-two");
     tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 2's favor.";
-    userTotalsDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2) + " User 2 Total: $" + userTwoValue.toFixed(2);
+    userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
+    userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
   } else if(userOneValue < userTwoValue ){
   tradeDifference = (userTwoValue - userOneValue).toFixed(2);
   tradeSumBackground.setAttribute("id", "gradient-one");
   tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
-  userTotalsDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2) + " User 2 Total: $" + userTwoValue.toFixed(2);
+  userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
+  userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
   }else if(userOneValue === userTwoValue){
     tradeDiffDisplay.textContent = "The trade is equal value."
     tradeSumBackground.setAttribute("id", "equal-background")
-    userTotalsDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2) + " User 2 Total: $" + userTwoValue.toFixed(2);
+    userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
+    userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
   }
 
 }
