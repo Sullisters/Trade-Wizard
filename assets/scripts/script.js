@@ -53,7 +53,7 @@ function getPrice(url) {
       return response.json();
     }).then(function (data) {
       modalPreview.setAttribute("src", data.image_uris.png);
-      modalPreview.setAttribute("alt", data.name);
+      // modalPreview.setAttribute("alt", data.name);
       pricePreview.textContent = "$" + data.prices.usd;
   });
 }
@@ -205,6 +205,10 @@ confirmCard.addEventListener("click", function () {
   // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
+  // Reset the modal form and preview.
+  modalPreview.setAttribute("src", "");
+  pricePreview.textContent = "";
+  searchBar.value = "";
 });
 })
 
