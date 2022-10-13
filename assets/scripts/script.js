@@ -52,7 +52,7 @@ function getPrice(url) {
       function (response) {
       return response.json();
     }).then(function (data) {
-      modalPreview.setAttribute("src", data.image_uris.normal);
+      modalPreview.setAttribute("src", data.image_uris.png);
       modalPreview.setAttribute("alt", data.name);
       pricePreview.textContent = "$" + data.prices.usd;
   });
@@ -102,7 +102,7 @@ function updateMainDisplay(url) {
     return response.json();
   }).then(function (data) {
         // Update main card display to the cards that was confirmed last.
-        cardImg.setAttribute("src", data.image_uris.normal)
+        cardImg.setAttribute("src", data.image_uris.png)
         cardImg.setAttribute("alt", data.name);
         cardPreviewPrice.textContent = "$" + data.prices.usd;
   })

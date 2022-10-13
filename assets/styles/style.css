@@ -3,40 +3,51 @@
 :root {
     /* COLORS */
     --light-main: #fff;
-    --dark-main: #222;
-    --accent-one: pink;
-    --accent-two: lightgreen;
-    /* --accent-three: ???; */
+    --dark-main: rgb(48, 49, 54);
+    --accent-one: rgb(130, 10, 141);
+    --accent-two: rgba(245, 140, 255, 0.89);
+    --type-light: ;
+    --type-dark: ;
 
     /* FONTS */
-    --heading-font: "lucida console";
-    --p-font: "Trebuchet MS";
-    --accent-font: "sans-serif";
+    --heading-font:  'Righteous', cursive;
+    --p-font: 'League Spartan', sans-serif;
 
-    /* BULMA FONT SIZING CLASSES */
-    /* $size-1	3rem
-    $size-2	2.5rem
-    $size-3	2rem
-    $size-4	1.5rem
-    $size-5	1.25rem
-    $size-6	1rem
-    $size-7	0.75rem */
+    /* TYPE */
+    --heading-size: 4rem;
+    --semi-heading-size: 2rem;
+    --body-size: 1.1rem;
 } 
 
 /* Element Styling */
+
 img{
     width: auto;
     height: auto;
 }
 body{
-    background-color: var(--accent-one);
-    /* height: 101vh; */
+    background-color: var(--dark-main);
+    font-family: var(--p-font);
+    /* font-size: var(--body-size); */
 }
 label {
     display: inline-block;
 }
 
+li {
+    color: var(--light-main);
+    background-color: var(--accent-one);
+    border-radius: 5px;
+    margin-bottom: 1vh;
+    padding: .3vh;
+}
+
 /* Class Styling */
+.title {
+    font-family: var(--heading-font);
+    font-size: var(--heading-size);
+    color: var(--light-main);
+}
 
 .box {
     display: flex;
@@ -48,6 +59,7 @@ label {
     background-color: var(--accent-two);
     height: 50vh;
     margin: 1vh 2vw;
+    border-radius: 10px;
 }
 
 /* Trade Summary Element */
@@ -55,16 +67,23 @@ label {
     background-color: var(--accent-two);
     height: 5vh;
     margin: 2vh;
+    border-radius: 10px;
+    color: var(--light-main);
 }
 
 .cardPrice {
     background-color: var(--accent-two);
     height: 7vh;
-    margin: 5vh 0 0 0;
+    border-radius: 10px;
+}
+
+.subtitle {
+    color: white;
 }
 
 
 /* ID Styling */
+
 #add-item-one {
 margin: 0 0 0 5vw;
 }
@@ -109,6 +128,10 @@ right: 5%;
     text-align: center;
 }
 
+#display-card-price {
+    color: var(--light-main);
+}
+
 /* Modal Form Styling */
 
 #search-form {
@@ -131,6 +154,10 @@ right: 5%;
 }
 #equal-background{
     background-image: green;
+}
+
+#card-preview {
+    margin: -7vh 0 0 0;
 }
 
 /* Media Queries */
