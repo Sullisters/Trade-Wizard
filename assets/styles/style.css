@@ -39,6 +39,7 @@ li {
     background-color: var(--accent-one);
     border-radius: 5px;
     margin-bottom: 1vh;
+    padding: .3vh;
 }
 
 /* Class Styling */
@@ -73,7 +74,10 @@ li {
 .cardPrice {
     background-color: var(--accent-two);
     height: 7vh;
+<<<<<<< HEAD
     margin: -10vh 0 0 0;
+=======
+>>>>>>> 7897abdd816e46873a58a57efe558bebd74b0351
     border-radius: 10px;
 }
 
@@ -154,6 +158,10 @@ right: 5%;
 }
 #equal-background{
     background-image: green;
+}
+
+#card-preview {
+    margin: -7vh 0 0 0;
 }
 
 /* Media Queries */
