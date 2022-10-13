@@ -10,7 +10,8 @@ var userOneValue = 0;
 // User 2
 var userTwoValue = 0;
 // Trade Difference
-var tradeDifference;;
+var tradeDifference;
+
 
 // DOM SELECTORS ----------------------------------------------------------
 // New Item Buttons
@@ -34,6 +35,7 @@ var cardListTwo = document.getElementById("card-list-two");
 // Trade Summary
 var tradeDiffDisplay = document.getElementById("trade-diff");
 var tradeSumBackground = document.querySelector(".tradeSummary")
+var userTotalsDisplay = document.getElementById("user-totals")
 
 
 // FUNCTIONS --------------------------------------------------------------
@@ -75,14 +77,18 @@ function updateSummary() {
     tradeDifference = (userOneValue - userTwoValue).toFixed(2);
     tradeSumBackground.setAttribute("id", "gradient-two");
     tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 2's favor.";
+    userTotalsDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2) + " User 2 Total: $" + userTwoValue.toFixed(2);
   } else if(userOneValue < userTwoValue ){
   tradeDifference = (userTwoValue - userOneValue).toFixed(2);
   tradeSumBackground.setAttribute("id", "gradient-one");
   tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
+  userTotalsDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2) + " User 2 Total: $" + userTwoValue.toFixed(2);
   }else if(userOneValue === userTwoValue){
     tradeDiffDisplay.textContent = "The trade is equal value."
     tradeSumBackground.setAttribute("id", "equal-background")
+    userTotalsDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2) + " User 2 Total: $" + userTwoValue.toFixed(2);
   }
+
 }
 
 // EVENT LISTENERS --------------------------------------------------------
