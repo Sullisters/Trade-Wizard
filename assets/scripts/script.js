@@ -56,6 +56,7 @@ function getPrice(url) {
 }
 
 function deleteItem(event) {
+  event.stopPropagation();
   // Subtract the value of the removed card from the appropriate user.
   if (event.path[2].id == "card-list-one") {
     userOneValue -= Number((event.path[1].children[1].innerText).substring(1));
@@ -80,6 +81,19 @@ function updateSummary() {
   tradeSumBackground.setAttribute("id", "gradient-one");
   tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
   }
+}
+
+// Updates the values and images of the main display based on a passed in url.
+function updateMainDisplay(url) {
+  fetch(url).then(
+    function (response) {
+    return response.json();
+  }).then(function (data) {
+        // Update main card display to the cards that was confirmed last.
+        cardImg.setAttribute("src", data.image_uris.normal)
+        cardImg.setAttribute("alt", data.name);
+        cardPreviewPrice.textContent = "$" + data.prices.usd;
+  })
 }
 
 // EVENT LISTENERS --------------------------------------------------------
@@ -157,6 +171,8 @@ confirmCard.addEventListener("click", function () {
   newPrice.textContent = "$" + data.prices.usd;
   removeItem.textContent = "Delete";
   removeItem.addEventListener("click", deleteItem)
+  // Gives each list item a copy of its url as data-url
+  newCard.setAttribute("data-name", data.name);
   // Append
   newCard.append(newName);
   newCard.append(newPrice);
@@ -172,14 +188,25 @@ confirmCard.addEventListener("click", function () {
   // Update the main trade summary.
   updateSummary();
   // Update main card display to the cards that was confirmed last.
-  cardImg.setAttribute("src", data.image_uris.normal)
-  cardImg.setAttribute("alt", data.name);
-  cardPreviewPrice.textContent = "$" + data.prices.usd;
+  constructURL(data.name)
+  updateMainDisplay(url);
   // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
 });
 })
+
+// Create event listener to bring already listed cards to the display.
+document.addEventListener("click", function (event) {
+    // Handles event bubbling for delete vs preview.
+    event.stopPropagation();
+    if (event.path[0].getAttribute("data-name") === null) {
+      constructURL(event.path[1].getAttribute("data-name"));
+    } else {
+      constructURL(event.path[0].getAttribute("data-name"));
+    }
+    updateMainDisplay(url);
+  })
 
   // MVP PSEUDOCODE
 /*
