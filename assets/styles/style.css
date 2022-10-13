@@ -63,6 +63,7 @@ label {
     margin: 5vh 0 0 0;
 }
 
+
 /* ID Styling */
 #add-item-one {
 margin: 0 0 0 5vw;
@@ -118,6 +119,18 @@ right: 5%;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+/* gradients */
+#gradient-one{
+    background-image: linear-gradient(to left, red, green);
+}
+
+#gradient-two{
+    background-image: linear-gradient(to right, red, green);
+}
+#equal-background{
+    background-image: green;
 }
 
 /* Media Queries */

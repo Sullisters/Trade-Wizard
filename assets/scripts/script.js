@@ -10,7 +10,8 @@ var userOneValue = 0;
 // User 2
 var userTwoValue = 0;
 // Trade Difference
-var tradeDifference;;
+var tradeDifference;
+
 
 // DOM SELECTORS ----------------------------------------------------------
 // New Item Buttons
@@ -33,6 +34,9 @@ var cardListOne = document.getElementById("card-list-one");
 var cardListTwo = document.getElementById("card-list-two");
 // Trade Summary
 var tradeDiffDisplay = document.getElementById("trade-diff");
+var tradeSumBackground = document.querySelector(".tradeSummary")
+var userOneTotalDisplay = document.getElementById("user-one-total")
+var userTwoTotalDisplay = document.getElementById("user-two-total")
 
 
 // FUNCTIONS --------------------------------------------------------------
@@ -42,7 +46,7 @@ function constructURL(search) {
   url = "https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy="+ search;
 }
 
-// Updates modal preview based on card entered to search bar.
+// Updates modal preview based on search bar contents.
 function getPrice(url) {
   fetch(url).then(
       function (response) {
@@ -55,15 +59,53 @@ function getPrice(url) {
 }
 
 function deleteItem(event) {
-  let deleteThis = event.path[1];
-  deleteThis.remove();
+  event.stopPropagation();
+  // Subtract the value of the removed card from the appropriate user.
+  if (event.path[2].id == "card-list-one") {
+    userOneValue -= Number((event.path[1].children[1].innerText).substring(1));
+  } else {
+    userTwoValue -= Number((event.path[1].children[1].innerText).substring(1));
+  }
+  // Remove the list item associated with the remove button pressed.
+  event.path[1].remove();
+  // Update the summary box with the new values.
+  updateSummary();
 }
 
 // Updates the trade summary.
 function updateSummary() {
-  // Update the trade difference and round it to a cent.
-  tradeDifference = (userOneValue - userTwoValue).toFixed(2);
-  tradeDiffDisplay.textContent = "Difference: $" + tradeDifference;
+  if (userOneValue > userTwoValue){
+    tradeDifference = (userOneValue - userTwoValue).toFixed(2);
+    tradeSumBackground.setAttribute("id", "gradient-two");
+    tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 2's favor.";
+    userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
+    userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
+  } else if(userOneValue < userTwoValue ){
+  tradeDifference = (userTwoValue - userOneValue).toFixed(2);
+  tradeSumBackground.setAttribute("id", "gradient-one");
+  tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
+  userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
+  userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
+  }else if(userOneValue === userTwoValue){
+    tradeDiffDisplay.textContent = "The trade is equal value."
+    tradeSumBackground.setAttribute("id", "equal-background")
+    userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
+    userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
+  }
+
+}
+
+// Updates the values and images of the main display based on a passed in url.
+function updateMainDisplay(url) {
+  fetch(url).then(
+    function (response) {
+    return response.json();
+  }).then(function (data) {
+        // Update main card display to the cards that was confirmed last.
+        cardImg.setAttribute("src", data.image_uris.normal)
+        cardImg.setAttribute("alt", data.name);
+        cardPreviewPrice.textContent = "$" + data.prices.usd;
+  })
 }
 
 // EVENT LISTENERS --------------------------------------------------------
@@ -74,7 +116,7 @@ searchBar.addEventListener("keyup", function () {
   getPrice(url);
 })
 
-// STORES BUTTON PRESSED IN currentList VAR
+// Tracks which User's button was pressed.
 addItemOne.addEventListener("click", function (event) {
   if (event.target.id === "add-item-one") {
     currentList = cardListOne;
@@ -141,6 +183,8 @@ confirmCard.addEventListener("click", function () {
   newPrice.textContent = "$" + data.prices.usd;
   removeItem.textContent = "Delete";
   removeItem.addEventListener("click", deleteItem)
+  // Gives each list item a copy of its url as data-url
+  newCard.setAttribute("data-name", data.name);
   // Append
   newCard.append(newName);
   newCard.append(newPrice);
@@ -156,14 +200,25 @@ confirmCard.addEventListener("click", function () {
   // Update the main trade summary.
   updateSummary();
   // Update main card display to the cards that was confirmed last.
-  cardImg.setAttribute("src", data.image_uris.normal)
-  cardImg.setAttribute("alt", data.name);
-  cardPreviewPrice.textContent = "$" + data.prices.usd;
+  constructURL(data.name)
+  updateMainDisplay(url);
   // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
 });
 })
+
+// Create event listener to bring already listed cards to the display.
+document.addEventListener("click", function (event) {
+    // Handles event bubbling for delete vs preview.
+    event.stopPropagation();
+    if (event.path[0].getAttribute("data-name") === null) {
+      constructURL(event.path[1].getAttribute("data-name"));
+    } else {
+      constructURL(event.path[0].getAttribute("data-name"));
+    }
+    updateMainDisplay(url);
+  })
 
   // MVP PSEUDOCODE
 /*
