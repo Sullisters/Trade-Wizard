@@ -128,6 +128,9 @@ right: 5%;
 #gradient-two{
     background-image: linear-gradient(to right, red, green);
 }
+#equal-background{
+    background-image: green;
+}
 
 /* Media Queries */
 

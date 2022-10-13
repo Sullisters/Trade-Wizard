@@ -75,10 +75,13 @@ function updateSummary() {
     tradeDifference = (userOneValue - userTwoValue).toFixed(2);
     tradeSumBackground.setAttribute("id", "gradient-two");
     tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 2's favor.";
-  } else{
+  } else if(userOneValue < userTwoValue ){
   tradeDifference = (userTwoValue - userOneValue).toFixed(2);
   tradeSumBackground.setAttribute("id", "gradient-one");
   tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
+  }else if(userOneValue === userTwoValue){
+    tradeDiffDisplay.textContent = "The trade is equal value."
+    tradeSumBackground.setAttribute("id", "equal-background")
   }
 }
 
