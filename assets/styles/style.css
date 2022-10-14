@@ -42,16 +42,22 @@ li {
     padding: .3vh;
 }
 
+li p {
+    text-shadow: 2px 2px 2px black;
+}
 /* Class Styling */
 .title {
     font-family: var(--heading-font);
     font-size: var(--heading-size);
     color: var(--light-main);
+    text-shadow: 5px 5px 10px rgba(255, 255, 255, 0.445);
 }
 
 .box {
     display: flex;
     flex-direction: column;
+    background-color: var(--dark-main);
+    color: var(--light-main);
 }
 
 /* User List Elements */
@@ -60,6 +66,7 @@ li {
     height: 50vh;
     margin: 1vh 2vw;
     border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
 }
 
 /* Trade Summary Element */
@@ -69,13 +76,17 @@ li {
     margin: 2vh;
     border-radius: 10px;
     color: var(--light-main);
+    box-shadow: 5px 5px 10px black;
+    text-shadow: 2px 2px 2px black;
 }
 
 .cardPrice {
     background-color: var(--accent-two);
     height: 7vh;
-    margin: -10vh 0 0 0;
+    margin: -1vh 0 0 0;
     border-radius: 10px;
+    opacity: 90%;
+    box-shadow: 5px 5px 10px black;
 }
 
 .subtitle {
@@ -89,6 +100,16 @@ li {
 
 .box {
     height: 68vh;
+    text-shadow: 2px 2px 2px black;
+}
+
+.button-one {
+    margin-left: 15%;
+}
+
+.button-two {
+    margin-left: 50%;
+    margin-right: 15%;
 }
 
 /* ID Styling */
@@ -100,19 +121,20 @@ li {
     border-radius: 20px;
 }
 
-#add-item-one {
-position: absolute;
-left: 31%;
+#buttonContainer1{
+    position: absolute;
+    left: 26%;
 }
 
-#add-item-two {
-position: absolute;
-right: 31%;
+#buttonContainer2{
+    margin-bottom: 1rem;
+    position: relative;
+    margin-left: 65%;
 }
-
 /* Modal */
 
 /* Confirm Button */
+
 #confirm-card {
     /* Layout */
     padding: 1vh;
@@ -164,6 +186,7 @@ right: 31%;
 
 #display-card-price {
     color: var(--light-main);
+    text-shadow: 2px 2px 2px black;
 }
 
 /* Modal Form Styling */
@@ -194,7 +217,7 @@ right: 31%;
 }
 
 #card-preview {
-    margin: -5vh 0 0 0;
+    margin: -9vh 0 0 0;
 }
 
 /* Media Queries */

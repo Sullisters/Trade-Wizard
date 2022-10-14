@@ -190,7 +190,9 @@ confirmCard.addEventListener("click", function () {
   newCard.style.display ="flex";
   newCard.style.justifyContent = "space-evenly";
   newCard.style.alignItems = "center";
-  newCard.style.border = "3px solid black";
+  newCard.style.border = "1px solid black";
+  newCard.style.boxShadow = "2px 2px 2px black"
+  newCard.style.textShadow = "2px 2px 15px black"
   // Create the list item content elements.
   var newName = document.createElement("p");
   var newPrice = document.createElement("p");
