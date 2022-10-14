@@ -35,11 +35,20 @@ label {
 }
 
 li {
-    color: var(--light-main);
-    background-color: var(--accent-one);
+    /* Layout */
     border-radius: 5px;
     margin-bottom: 1vh;
     padding: .3vh;
+    /* Deco */
+    color: var(--light-main);
+    background-color: var(--accent-one);
+    box-shadow: 2px 2px 2px black;
+    text-shadow: 2px 2px 15px black;
+    border: 1px solid black;
+    /* Flex Settings */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 li p {
