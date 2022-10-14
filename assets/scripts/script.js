@@ -3,6 +3,7 @@
 // Current URL
 var url;
 var currentList;
+var currentPrice;
 
 // Trade Value Variables
 // User 1
@@ -22,6 +23,9 @@ var usernameTwo = document.getElementById("username-two");
 // New Item Buttons
 var addItemOne = document.getElementById("add-item-one");
 var addItemTwo = document.getElementById("add-item-two");
+// Clear List Buttons
+var clearListOne = document.getElementById("clear-list-one");
+var clearListTwo = document.getElementById("clear-list-two");
 // Main Card Preview
 var cardImg = document.getElementById("card-img");
 // Main Card Price Preview
@@ -57,12 +61,21 @@ function getPrice(url) {
       function (response) {
       return response.json();
     }).then(function (data) {
+
+          // If they checked the foil box, set the price we use to foil.
+    if (foilCheck.checked) {
+      currentPrice = data.prices.usd_foil;
+    } else {
+      currentPrice = data.prices.usd;
+    }
+
       modalPreview.setAttribute("src", data.image_uris.png);
       // modalPreview.setAttribute("alt", data.name);
-      pricePreview.textContent = "$" + data.prices.usd;
+      pricePreview.textContent = "$" + currentPrice;
   });
 }
 
+// Removes the item when a user hits "delete" 
 function deleteItem(event) {
   event.stopPropagation();
   // Subtract the value of the removed card from the appropriate user.
@@ -121,7 +134,7 @@ function updateMainDisplay(url) {
         // Update main card display to the cards that was confirmed last.
         cardImg.setAttribute("src", data.image_uris.png)
         cardImg.setAttribute("alt", data.name);
-        cardPreviewPrice.textContent = "$" + data.prices.usd;
+        cardPreviewPrice.textContent = "$" + currentPrice;
   })
 }
 
@@ -155,6 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function closeModal($el) {
       $el.classList.remove('is-active');
+        // Reset the modal form and preview.
+      modalPreview.setAttribute("src", "");
+      pricePreview.textContent = "";
+     searchBar.value = "";
     }
 
     // Add a click event on buttons to open a specific modal
@@ -197,9 +214,23 @@ confirmCard.addEventListener("click", function () {
   var newName = document.createElement("p");
   var newPrice = document.createElement("p");
   var removeItem = document.createElement("button");
+  // If they checked the foil box, set the price we use to foil.
+  if (foilCheck.checked) {
+    currentPrice = data.prices.usd_foil;
+    if (currentPrice == null) {
+      currentPrice = "???";
+    }
+    newCard.setAttribute("data-foil", "foil")
+   } else {
+    currentPrice = data.prices.usd;
+    if (currentPrice == null) {
+      currentPrice = "???";
+    }
+    newCard.setAttribute("data-foil", "non-foil")
+  }
   // Set list item content.
   newName.textContent = data.name;
-  newPrice.textContent = "$" + data.prices.usd;
+  newPrice.textContent = "$" + currentPrice;
   removeItem.textContent = "Delete";
   removeItem.addEventListener("click", deleteItem)
   // Gives each list item a copy of its url as data-url
@@ -212,9 +243,15 @@ confirmCard.addEventListener("click", function () {
   currentList.appendChild(newCard);
   // Adds the price of the card to the appropriates player trade value.
   if (currentList === cardListOne) {
-    userOneValue += Number(data.prices.usd);
+    if (currentPrice === "???") { 
+    } else {
+      userOneValue += Number(currentPrice);
+    }
   } else if (currentList === cardListTwo) {
-    userTwoValue += Number(data.prices.usd);
+    if (currentPrice === "???") { 
+    } else {
+      userTwoValue += Number(currentPrice);
+    }
   }
   // Update the main trade summary.
   updateSummary();
@@ -224,10 +261,6 @@ confirmCard.addEventListener("click", function () {
   // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
-  // Reset the modal form and preview.
-  modalPreview.setAttribute("src", "");
-  pricePreview.textContent = "";
-  searchBar.value = "";
 });
 })
 
@@ -237,8 +270,11 @@ document.addEventListener("click", function (event) {
     event.stopPropagation();
     if (event.path[0].getAttribute("data-name") === null) {
       constructURL(event.path[1].getAttribute("data-name"));
+      console.log(event.path[1].getAttribute("data-foil"))
     } else {
       constructURL(event.path[0].getAttribute("data-name"));
+      console.log(event.path[0].getAttribute("data-foil"))
+
     }
     updateMainDisplay(url);
   })
@@ -248,8 +284,7 @@ usernameOne.addEventListener("keyup", function () {
   updateSummary();
   fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameOne.value + ".svg?background=%23ffffff").then(
     function (response) {
-              // Update main card display to the cards that was confirmed last.
-              console.log(response);
+              // Update avatar based on username.
               avatarOne.setAttribute("src", response.url);
               avatarOne.setAttribute("alt", usernameOne);
   })
@@ -260,11 +295,23 @@ usernameTwo.addEventListener("keyup", function () {
   updateSummary();
   fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameTwo.value + ".svg?background=%23ffffff").then(
     function (response) {
-              // Update main card display to the cards that was confirmed last.
-              console.log(response);
+              // Update avatar based on username.
               avatarTwo.setAttribute("src", response.url);
               avatarTwo.setAttribute("alt", usernameTwo);
   })
+})
+
+// Clears the list when the user hits the "clear" button.
+clearListOne.addEventListener("click", function () {
+  cardListOne.innerHTML = '';
+  userOneValue = 0;
+  updateSummary();
+})
+
+clearListTwo.addEventListener("click", function () {
+  cardListTwo.innerHTML = '';
+  userTwoValue = 0;
+  updateSummary();
 })
 
   // MVP PSEUDOCODE
