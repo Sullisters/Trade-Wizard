@@ -23,6 +23,9 @@ var usernameTwo = document.getElementById("username-two");
 // New Item Buttons
 var addItemOne = document.getElementById("add-item-one");
 var addItemTwo = document.getElementById("add-item-two");
+// Clear List Buttons
+var clearListOne = document.getElementById("clear-list-one");
+var clearListTwo = document.getElementById("clear-list-two");
 // Main Card Preview
 var cardImg = document.getElementById("card-img");
 // Main Card Price Preview
@@ -165,6 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function closeModal($el) {
       $el.classList.remove('is-active');
+        // Reset the modal form and preview.
+      modalPreview.setAttribute("src", "");
+      pricePreview.textContent = "";
+     searchBar.value = "";
     }
 
     // Add a click event on buttons to open a specific modal
@@ -207,16 +214,20 @@ confirmCard.addEventListener("click", function () {
   var newName = document.createElement("p");
   var newPrice = document.createElement("p");
   var removeItem = document.createElement("button");
-
   // If they checked the foil box, set the price we use to foil.
   if (foilCheck.checked) {
     currentPrice = data.prices.usd_foil;
+    if (currentPrice == null) {
+      currentPrice = "???";
+    }
     newCard.setAttribute("data-foil", "foil")
    } else {
     currentPrice = data.prices.usd;
+    if (currentPrice == null) {
+      currentPrice = "???";
+    }
     newCard.setAttribute("data-foil", "non-foil")
   }
-
   // Set list item content.
   newName.textContent = data.name;
   newPrice.textContent = "$" + currentPrice;
@@ -232,9 +243,15 @@ confirmCard.addEventListener("click", function () {
   currentList.appendChild(newCard);
   // Adds the price of the card to the appropriates player trade value.
   if (currentList === cardListOne) {
-    userOneValue += Number(currentPrice);
+    if (currentPrice === "???") { 
+    } else {
+      userOneValue += Number(currentPrice);
+    }
   } else if (currentList === cardListTwo) {
-    userTwoValue += Number(currentPrice);
+    if (currentPrice === "???") { 
+    } else {
+      userTwoValue += Number(currentPrice);
+    }
   }
   // Update the main trade summary.
   updateSummary();
@@ -244,10 +261,6 @@ confirmCard.addEventListener("click", function () {
   // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
-  // Reset the modal form and preview.
-  modalPreview.setAttribute("src", "");
-  pricePreview.textContent = "";
-  searchBar.value = "";
 });
 })
 
@@ -286,6 +299,19 @@ usernameTwo.addEventListener("keyup", function () {
               avatarTwo.setAttribute("src", response.url);
               avatarTwo.setAttribute("alt", usernameTwo);
   })
+})
+
+// Clears the list when the user hits the "clear" button.
+clearListOne.addEventListener("click", function () {
+  cardListOne.innerHTML = '';
+  userOneValue = 0;
+  updateSummary();
+})
+
+clearListTwo.addEventListener("click", function () {
+  cardListTwo.innerHTML = '';
+  userTwoValue = 0;
+  updateSummary();
 })
 
   // MVP PSEUDOCODE
