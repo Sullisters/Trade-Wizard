@@ -103,20 +103,30 @@ li p {
     text-shadow: 2px 2px 2px black;
 }
 
-/* ID Styling */
-#add-item-one {
-    position: absolute;
-    left: 30%;
+.button-one {
+    margin-left: 15%;
 }
 
-#add-item-two {
+.button-two {
+    margin-left: 50%;
+    margin-right: 15%;
+}
+
+/* ID Styling */
+#buttonContainer1{
+    position: absolute;
+    left: 26%;
+}
+
+#buttonContainer2{
+    margin-bottom: 1rem;
     position: relative;
     margin-left: 65%;
 }
-
 /* Modal */
 
 /* Confirm Button */
+
 #confirm-card {
     /* Layout */
     padding: 1vh;
