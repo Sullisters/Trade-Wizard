@@ -138,6 +138,22 @@ function updateMainDisplay(url) {
   })
 }
 
+// // Creates and appends a new list item.
+// function createListItem() {
+//     // Use our constructed URL to grab the correct card.
+//     fetch(url).then(
+//       function (response) {
+//       return response.json();
+//     }).then(function (data) {
+//     // Create the master list item.
+//     var newCard = document.createElement("li");
+//     // Create the list item content elements.
+//     var newName = document.createElement("p");
+//     var newPrice = document.createElement("p");
+//     var removeItem = document.createElement("button");
+    
+// })}
+
 // EVENT LISTENERS --------------------------------------------------------
 
 // Modal preview will update while card is being typed.
@@ -168,10 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function closeModal($el) {
       $el.classList.remove('is-active');
-        // Reset the modal form and preview.
+      // Reset the modal form and preview.
       modalPreview.setAttribute("src", "");
       pricePreview.textContent = "";
-     searchBar.value = "";
+      searchBar.value = "";
     }
 
     // Add a click event on buttons to open a specific modal
@@ -203,13 +219,6 @@ confirmCard.addEventListener("click", function () {
   }).then(function (data) {
   // Create the master list item.
   var newCard = document.createElement("li");
-  // Format the list item to properly display its contents.
-  newCard.style.display ="flex";
-  newCard.style.justifyContent = "space-evenly";
-  newCard.style.alignItems = "center";
-  newCard.style.border = "1px solid black";
-  newCard.style.boxShadow = "2px 2px 2px black"
-  newCard.style.textShadow = "2px 2px 15px black"
   // Create the list item content elements.
   var newName = document.createElement("p");
   var newPrice = document.createElement("p");
@@ -313,6 +322,26 @@ clearListTwo.addEventListener("click", function () {
   userTwoValue = 0;
   updateSummary();
 })
+
+foilCheck.addEventListener("click", function () {
+  constructURL(searchBar.value);
+  getPrice(url);
+})
+
+// Initialize the usernames and avatars.
+usernameOne.value = "User One";
+usernameTwo.value = "User Two";
+fetch("https://avatars.dicebear.com/api/croodles-neutral/UserOne.svg?background=%23ffffff").then(function (response) {
+    // Update avatar based on username.
+    avatarTwo.setAttribute("src", response.url);
+    avatarTwo.setAttribute("alt", usernameTwo);
+  })
+fetch("https://avatars.dicebear.com/api/croodles-neutral/UserTwo.svg?background=%23ffffff").then(function (response) {
+    // Update avatar based on username.
+    avatarOne.setAttribute("src", response.url);
+    avatarOne.setAttribute("alt", usernameOne);
+})
+
 
   // MVP PSEUDOCODE
 /*
