@@ -74,10 +74,7 @@ li {
 .cardPrice {
     background-color: var(--accent-two);
     height: 7vh;
-<<<<<<< HEAD
     margin: -10vh 0 0 0;
-=======
->>>>>>> 7897abdd816e46873a58a57efe558bebd74b0351
     border-radius: 10px;
 }
 
@@ -97,12 +94,13 @@ li {
 /* ID Styling */
 
 #add-item-one {
-margin: 0 0 0 5vw;
+position: absolute;
+left: 31%;
 }
 
 #add-item-two {
 position: absolute;
-right: 5%;
+right: 31%;
 }
 
 /* Modal */
@@ -189,7 +187,7 @@ right: 5%;
 }
 
 #card-preview {
-    margin: -7vh 0 0 0;
+    margin: -5vh 0 0 0;
 }
 
 /* Media Queries */
