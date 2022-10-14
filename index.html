@@ -23,33 +23,42 @@
               <p class="title level-item">
                 Card Broker
               </p>
-              <p class="subtitle level-item">
+              <p class="subtitle level-item buttons has-addons">
                 Compare your Magic the Gathering trades!
+                <button class="button is-light is-responsive is-outlined">Yes</button>
+                <button class="button is-light is-responsive is-outlined">Maybe</button>
               </p>
             </div>
           </section>
     </header>
     <!-- Main/Trade Section -->
     <main>
-    <!-- User/Pic Section -->
-    <input type="text" id="username-one">
-    <img src="" alt="" id='user-one-avatar'>
-    <input type="text" id="username-two">
+    <!-- Horizontal leveled items -->
+    <img src="" alt="" id='user-one-avatar'>  
     <img src="" alt="" id='user-two-avatar'>
-    
-      <!-- Search Bar -->
-    <div class="field is-grouped">
-      <div class="buttons are-small has-addons" id="buttonContainer1">
-        <button class="button is-light is-responsive is-outlined">Remove Item</button>
-          
-        <button id="add-item-one" class="js-modal-trigger button is-light is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
+    <div class="level is-mobile">
+      <div class="level-left" id="leftContainer">
+        <!-- Text Input and Avatar -->
+        <input type="text" id="username-one">
+        <!-- Clear All button -->
+          <div class="buttons are-small has-addons leftButtons">
+            <button class="button is-light is-responsive is-outlined">Clear All</button>
+        <!-- Add Card button -->
+            <button id="add-item-one" class="js-modal-trigger button is-light is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
+          </div>
       </div>
-      <div class="buttons are-small has-addons" id="buttonContainer2">
-        <button id="add-item-two" class="js-modal-trigger button is-light is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
-
-        <button class="button is-light is-responsive is-outlined">Remove Item</button>
-      </div>
+      <div class="level-right" id="rightContainer">
+        <!-- Add Card button -->
+        <div class="buttons are-small has-addons rightButtons">
+          <button id="add-item-two" class="js-modal-trigger button is-light is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
+          <!-- Clear All Button -->
+          <button class="button is-light is-responsive is-outlined">Clear All</button>
+          <!-- Text Input and Avatar -->
+          <input type="text" id="username-two">
+        </div>
+      </div> 
     </div>
+
       
       <div class="columns is-mobile">
       <!-- User 1 -->

@@ -103,14 +103,6 @@ li p {
     text-shadow: 2px 2px 2px black;
 }
 
-.button-one {
-    margin-left: 15%;
-}
-
-.button-two {
-    margin-left: 50%;
-    margin-right: 15%;
-}
 
 /* ID Styling */
 
@@ -121,15 +113,35 @@ li p {
     border-radius: 20px;
 }
 
-#buttonContainer1{
-    position: absolute;
-    left: 26%;
+#user-one-avatar {
+    position: relative;
+    left: 2vw;
 }
 
-#buttonContainer2{
-    margin-bottom: 1rem;
+#user-two-avatar {
+    position: absolute;
+    right: 2vw;
+}
+
+#leftContainer {
     position: relative;
-    margin-left: 65%;
+    left: 19vw;
+}
+
+#rightContainer {
+    
+    position: relative;
+    right: 19vw;
+}
+
+#username-one {
+    position: relative;
+    right: 17vw;
+}
+
+#username-two {
+    position: relative;
+    left: 17vw;
 }
 /* Modal */
 
@@ -221,5 +233,16 @@ li p {
 }
 
 /* Media Queries */
-
+/* @media screen and (min-width: 1920px) {
+    .leftButtons {
+        position: relative;
+        margin-left: -5vw;
+    }
+    
+    .rightButtons {
+        position: relative;
+        margin-right: -20vw;
+    }
+    
+} */
 /* Animations */
