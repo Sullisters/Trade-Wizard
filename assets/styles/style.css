@@ -93,6 +93,13 @@ li {
 
 /* ID Styling */
 
+/* Avatar */
+
+#user-one-avatar, #user-two-avatar {
+    max-width: 7.5vw;
+    border-radius: 20px;
+}
+
 #add-item-one {
 position: absolute;
 left: 31%;
