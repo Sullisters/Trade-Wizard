@@ -138,20 +138,21 @@ function updateMainDisplay(url) {
   })
 }
 
-// Creates and appends a new list item.
-function createListItem() {
-    // Use our constructed URL to grab the correct card.
-    fetch(url).then(
-      function (response) {
-      return response.json();
-    }).then(function (data) {
-    // Create the master list item.
-    var newCard = document.createElement("li");
-    // Create the list item content elements.
-    var newName = document.createElement("p");
-    var newPrice = document.createElement("p");
-    var removeItem = document.createElement("button");
-}}
+// // Creates and appends a new list item.
+// function createListItem() {
+//     // Use our constructed URL to grab the correct card.
+//     fetch(url).then(
+//       function (response) {
+//       return response.json();
+//     }).then(function (data) {
+//     // Create the master list item.
+//     var newCard = document.createElement("li");
+//     // Create the list item content elements.
+//     var newName = document.createElement("p");
+//     var newPrice = document.createElement("p");
+//     var removeItem = document.createElement("button");
+    
+// })}
 
 // EVENT LISTENERS --------------------------------------------------------
 
@@ -320,6 +321,11 @@ clearListTwo.addEventListener("click", function () {
   cardListTwo.innerHTML = '';
   userTwoValue = 0;
   updateSummary();
+})
+
+foilCheck.addEventListener("click", function () {
+  constructURL(searchBar.value);
+  getPrice(url);
 })
 
 // Initialize the usernames and avatars.
