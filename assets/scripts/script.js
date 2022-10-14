@@ -14,6 +14,11 @@ var tradeDifference;
 
 
 // DOM SELECTORS ----------------------------------------------------------
+// Username and Avatar
+var avatarOne = document.getElementById("user-one-avatar");
+var usernameOne = document.getElementById("username-one");
+var avatarTwo = document.getElementById("user-two-avatar");
+var usernameTwo = document.getElementById("username-two");
 // New Item Buttons
 var addItemOne = document.getElementById("add-item-one");
 var addItemTwo = document.getElementById("add-item-two");
@@ -223,6 +228,29 @@ document.addEventListener("click", function (event) {
     }
     updateMainDisplay(url);
   })
+
+// Update the avatar based on what username has been entered.
+usernameOne.addEventListener("keyup", function () {
+  fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameOne.value + ".svg?background=%23ffffff").then(
+    function (response) {
+              // Update main card display to the cards that was confirmed last.
+              console.log(response);
+              avatarOne.setAttribute("src", response.url);
+              avatarOne.setAttribute("alt", usernameOne);
+
+  })
+})
+
+// Update the avatar based on what username has been entered.
+usernameTwo.addEventListener("keyup", function () {
+  fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameTwo.value + ".svg?background=%23ffffff").then(
+    function (response) {
+              // Update main card display to the cards that was confirmed last.
+              console.log(response);
+              avatarTwo.setAttribute("src", response.url);
+              avatarTwo.setAttribute("alt", usernameTwo);
+  })
+})
 
   // MVP PSEUDOCODE
 /*
