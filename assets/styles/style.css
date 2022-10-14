@@ -54,6 +54,10 @@ li {
 li p {
     text-shadow: 2px 2px 2px black;
 }
+
+main {
+    height: 100vh;
+}
 /* Class Styling */
 .title {
     font-family: var(--heading-font);
@@ -112,9 +116,19 @@ li p {
     text-shadow: 2px 2px 2px black;
 }
 
-
 /* ID Styling */
+#title-padding {
+    padding-bottom: 10px;
+}
 
+#card-broker {
+    justify-content: start;
+    margin-left: 1vw;
+}
+
+#dark-mode-button {
+    margin-right: 1vw;
+}
 /* Avatar */
 
 #user-one-avatar, #user-two-avatar {
@@ -238,20 +252,6 @@ li p {
 }
 
 #card-preview {
-    margin: -9vh 0 0 0;
+    margin: -15vh 0 0 0;
 }
-
-/* Media Queries */
-/* @media screen and (min-width: 1920px) {
-    .leftButtons {
-        position: relative;
-        margin-left: -5vw;
-    }
-    
-    .rightButtons {
-        position: relative;
-        margin-right: -20vw;
-    }
-    
-} */
 /* Animations */
