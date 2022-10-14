@@ -63,6 +63,7 @@ function getPrice(url) {
   });
 }
 
+// Removes the item when a user hits "delete" 
 function deleteItem(event) {
   event.stopPropagation();
   // Subtract the value of the removed card from the appropriate user.
@@ -172,6 +173,11 @@ confirmCard.addEventListener("click", function () {
     function (response) {
     return response.json();
   }).then(function (data) {
+    // If they checked the foil box, set the price we use to foil.
+
+
+
+
   // Create the master list item.
   var newCard = document.createElement("li");
   // Format the list item to properly display its contents.
@@ -207,6 +213,14 @@ confirmCard.addEventListener("click", function () {
   // Update main card display to the cards that was confirmed last.
   constructURL(data.name)
   updateMainDisplay(url);
+
+
+  // Show the checked condition of the foil option.
+  console.log(foilCheck.checked);
+
+
+
+
   // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
@@ -233,11 +247,9 @@ document.addEventListener("click", function (event) {
 usernameOne.addEventListener("keyup", function () {
   fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameOne.value + ".svg?background=%23ffffff").then(
     function (response) {
-              // Update main card display to the cards that was confirmed last.
-              console.log(response);
+              // Update avatar based on username.
               avatarOne.setAttribute("src", response.url);
               avatarOne.setAttribute("alt", usernameOne);
-
   })
 })
 
@@ -245,8 +257,7 @@ usernameOne.addEventListener("keyup", function () {
 usernameTwo.addEventListener("keyup", function () {
   fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameTwo.value + ".svg?background=%23ffffff").then(
     function (response) {
-              // Update main card display to the cards that was confirmed last.
-              console.log(response);
+              // Update avatar based on username.
               avatarTwo.setAttribute("src", response.url);
               avatarTwo.setAttribute("alt", usernameTwo);
   })
