@@ -113,6 +113,14 @@ li p {
 }
 
 /* ID Styling */
+
+/* Avatar */
+
+#user-one-avatar, #user-two-avatar {
+    max-width: 7.5vw;
+    border-radius: 20px;
+}
+
 #buttonContainer1{
     position: absolute;
     left: 26%;
