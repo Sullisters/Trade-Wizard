@@ -89,23 +89,35 @@ function deleteItem(event) {
 
 // Updates the trade summary.
 function updateSummary() {
+  //checks value of the trade
   if (userOneValue > userTwoValue){
+    //checks if this trade favors user Two
     tradeDifference = (userOneValue - userTwoValue).toFixed(2);
+    //changes summary background from red to green showing in user 2's favor 
+    //outputs the difference in favor of user 2.
     tradeSumBackground.setAttribute("id", "gradient-two");
-    tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 2's favor.";
-    userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
-    userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
+    tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in " + usernameTwo.value +"'s favor.";
+    //updates the totals based on cards in the list
+    userOneTotalDisplay.textContent = usernameOne.value + "'s total: $" + userOneValue.toFixed(2); 
+    userTwoTotalDisplay.textContent = usernameTwo.value + "'s total: $" + userTwoValue.toFixed(2);
   } else if(userOneValue < userTwoValue ){
-  tradeDifference = (userTwoValue - userOneValue).toFixed(2);
-  tradeSumBackground.setAttribute("id", "gradient-one");
-  tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in user 1's favor.";
-  userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
-  userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
-  }else if(userOneValue === userTwoValue){
+    //checks if this trade favors user One. 
+    //outputs the difference in favor of user 1
+    tradeDifference = (userTwoValue - userOneValue).toFixed(2);
+    //changes summary background if from green to red showing in favor of user 1
+    tradeSumBackground.setAttribute("id", "gradient-one");
+    tradeDiffDisplay.textContent = "Difference: $" + tradeDifference + " in " + usernameOne.value +"'s favor.";
+    //updates the totals based on cards in the list
+    userOneTotalDisplay.textContent = usernameOne.value + "'s total: $" + userOneValue.toFixed(2); 
+    userTwoTotalDisplay.textContent = usernameTwo.value + "'s total: $" + userTwoValue.toFixed(2);
+    }else if(userOneValue === userTwoValue){
+      //checks if this trade is equal in value. then outputs the trade is equal.
     tradeDiffDisplay.textContent = "The trade is equal value."
+    //changes the summary background to the neutral color if the trade is equal.
     tradeSumBackground.setAttribute("id", "equal-background")
-    userOneTotalDisplay.textContent = "User 1 total: $" + userOneValue.toFixed(2); 
-    userTwoTotalDisplay.textContent = " User 2 Total: $" + userTwoValue.toFixed(2);
+    //updates the totals based on cards in the list
+    userOneTotalDisplay.textContent = usernameOne.value + "'s total: $" + userOneValue.toFixed(2); 
+    userTwoTotalDisplay.textContent = usernameTwo.value + "'s total: $" + userTwoValue.toFixed(2);
   }
 
 }
@@ -188,7 +200,9 @@ confirmCard.addEventListener("click", function () {
   newCard.style.display ="flex";
   newCard.style.justifyContent = "space-evenly";
   newCard.style.alignItems = "center";
-  newCard.style.border = "3px solid black";
+  newCard.style.border = "1px solid black";
+  newCard.style.boxShadow = "2px 2px 2px black"
+  newCard.style.textShadow = "2px 2px 15px black"
   // Create the list item content elements.
   var newName = document.createElement("p");
   var newPrice = document.createElement("p");
@@ -254,6 +268,7 @@ document.addEventListener("click", function (event) {
 
 // Update the avatar based on what username has been entered.
 usernameOne.addEventListener("keyup", function () {
+  updateSummary();
   fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameOne.value + ".svg?background=%23ffffff").then(
     function (response) {
               // Update avatar based on username.
@@ -264,6 +279,7 @@ usernameOne.addEventListener("keyup", function () {
 
 // Update the avatar based on what username has been entered.
 usernameTwo.addEventListener("keyup", function () {
+  updateSummary();
   fetch("https://avatars.dicebear.com/api/croodles-neutral/" + usernameTwo.value + ".svg?background=%23ffffff").then(
     function (response) {
               // Update avatar based on username.
