@@ -2,7 +2,7 @@
 
 // Current URL
 var url;
-var currentList;
+var currentList = cardListOne;
 var currentPrice;
 
 // Trade Value Variables
@@ -15,6 +15,8 @@ var tradeDifference;
 
 
 // DOM SELECTORS ----------------------------------------------------------
+// Save Trade Button
+var saveTrade = document.getElementById("save-trade");
 // Username and Avatar
 var avatarOne = document.getElementById("user-one-avatar");
 var usernameOne = document.getElementById("username-one");
@@ -126,33 +128,132 @@ function updateSummary() {
 }
 
 // Updates the values and images of the main display based on a passed in url.
-function updateMainDisplay(url) {
+function updateMainDisplay() {
   fetch(url).then(
     function (response) {
     return response.json();
   }).then(function (data) {
-        // Update main card display to the cards that was confirmed last.
-        cardImg.setAttribute("src", data.image_uris.png)
-        cardImg.setAttribute("alt", data.name);
-        cardPreviewPrice.textContent = "$" + currentPrice;
+    
+      if (foilCheck.checked) {
+      currentPrice = data.prices.usd_foil;
+      } else {
+        currentPrice = data.prices.usd;
+      }
+      // Update main card display to the cards that was confirmed last.
+      cardImg.setAttribute("src", data.image_uris.png)
+      cardImg.setAttribute("alt", data.name);
+      cardPreviewPrice.textContent = "$" + currentPrice;
   })
 }
 
-// // Creates and appends a new list item.
-// function createListItem() {
-//     // Use our constructed URL to grab the correct card.
-//     fetch(url).then(
-//       function (response) {
-//       return response.json();
-//     }).then(function (data) {
-//     // Create the master list item.
-//     var newCard = document.createElement("li");
-//     // Create the list item content elements.
-//     var newName = document.createElement("p");
-//     var newPrice = document.createElement("p");
-//     var removeItem = document.createElement("button");
-    
-// })}
+function createListItem(currentList) {
+  // Use our constructed URL to grab the correct card.
+  fetch(url).then(
+    function (response) {
+    return response.json();
+  }).then(function (data) {
+  // Create the master list item.
+  var newCard = document.createElement("li");
+  // Create the list item content elements.
+  var newName = document.createElement("p");
+  var newPrice = document.createElement("p");
+  var removeItem = document.createElement("button");
+  // Store the url in the list item
+  newCard.setAttribute("data-url", "https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy="+ data.name)
+  // If they checked the foil box, set the price we use to foil.
+  if (foilCheck.checked) {
+    currentPrice = data.prices.usd_foil;
+    if (currentPrice == null) {
+      currentPrice = "???";
+    }
+    newCard.setAttribute("data-foil", "foil")
+   } else {
+    currentPrice = data.prices.usd;
+    if (currentPrice == null) {
+      currentPrice = "???";
+    }
+    newCard.setAttribute("data-foil", "non-foil")
+  }
+  // Set list item content.
+  newName.textContent = data.name;
+  newPrice.textContent = "$" + currentPrice;
+  removeItem.textContent = "Delete";
+  removeItem.addEventListener("click", deleteItem)
+  // Gives each list item a copy of its url as data-url
+  newCard.setAttribute("data-name", data.name);
+  // Append
+  newCard.append(newName);
+  newCard.append(newPrice);
+  newCard.append(removeItem);
+  // V Super weird catch
+  if (currentList === undefined) {
+    currentList = cardListOne;
+  }
+  // Append the master list to the page.
+  currentList.appendChild(newCard);
+  // Adds the price of the card to the appropriates player trade value.
+  if (currentList === cardListOne) {
+    if (currentPrice === "???") { 
+    } else {
+      userOneValue += Number(currentPrice);
+    }
+  } else if (currentList === cardListTwo) {
+    if (currentPrice === "???") { 
+    } else {
+      userTwoValue += Number(currentPrice);
+    }
+  }
+  // Update the main trade summary.
+  updateSummary();
+  // Update main card display to the cards that was confirmed last.
+  constructURL(data.name)
+  updateMainDisplay();
+})}
+
+// Updates the localStorage to reflect the current trade.
+function updateLS() {
+  var storedUrl; 
+  var storedFoil;
+  var savedListOne = Array.from(cardListOne.children);
+  var savedListTwo = Array.from(cardListTwo.children);
+  var savedTrade = savedListOne.concat(savedListTwo);
+  console.log(savedTrade);
+  localStorage.clear();
+for (let i = 0; i < savedTrade.length; i++) {
+  if (i < savedListOne.length) {
+    storedUrl = savedTrade[i].dataset.url;
+    storedFoil = savedTrade[i].dataset.foil;
+    localStorage.setItem(i, JSON.stringify({url: storedUrl, foil: storedFoil, side: 1}))
+  } else {
+    storedUrl = savedTrade[i].dataset.url;
+    storedFoil = savedTrade[i].dataset.foil;
+    localStorage.setItem(i, JSON.stringify({url: storedUrl, foil: storedFoil, side: 2}))
+  }
+}
+}
+
+
+function loadTrade() {
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.getItem(i) !== null) {
+      var storedCard = JSON.parse(localStorage.getItem(i));
+      url = storedCard.url;
+      if (storedCard.foil === "foil") {
+        foilCheck.checked = true;
+      } else {
+        foilCheck.checked = false;
+      }
+      console.log(storedCard.side)
+      console.log(storedCard.url)
+      if (storedCard.side === 2) {
+        console.log("hitting");
+        currentList = cardListTwo;
+      }
+      createListItem(currentList);
+
+  }
+}
+}
 
 // EVENT LISTENERS --------------------------------------------------------
 
@@ -180,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
       $el.classList.add('is-active');
+      
         }
   
     function closeModal($el) {
@@ -212,66 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // When a user confirms their card choice in the modal view.
 confirmCard.addEventListener("click", function () {
-  // Use our constructed URL to grab the correct card.
-  fetch(url).then(
-    function (response) {
-    return response.json();
-  }).then(function (data) {
-  // Create the master list item.
-  var newCard = document.createElement("li");
-  // Create the list item content elements.
-  var newName = document.createElement("p");
-  var newPrice = document.createElement("p");
-  var removeItem = document.createElement("button");
-  // If they checked the foil box, set the price we use to foil.
-  if (foilCheck.checked) {
-    currentPrice = data.prices.usd_foil;
-    if (currentPrice == null) {
-      currentPrice = "???";
-    }
-    newCard.setAttribute("data-foil", "foil")
-   } else {
-    currentPrice = data.prices.usd;
-    if (currentPrice == null) {
-      currentPrice = "???";
-    }
-    newCard.setAttribute("data-foil", "non-foil")
-  }
-  // Set list item content.
-  newName.textContent = data.name;
-  newPrice.textContent = "$" + currentPrice;
-  removeItem.textContent = "Delete";
-  removeItem.addEventListener("click", deleteItem)
-  // Gives each list item a copy of its url as data-url
-  newCard.setAttribute("data-name", data.name);
-  // Append
-  newCard.append(newName);
-  newCard.append(newPrice);
-  newCard.append(removeItem);
-  // Append the master list to the page.
-  currentList.appendChild(newCard);
-  // Adds the price of the card to the appropriates player trade value.
-  if (currentList === cardListOne) {
-    if (currentPrice === "???") { 
-    } else {
-      userOneValue += Number(currentPrice);
-    }
-  } else if (currentList === cardListTwo) {
-    if (currentPrice === "???") { 
-    } else {
-      userTwoValue += Number(currentPrice);
-    }
-  }
-  // Update the main trade summary.
-  updateSummary();
-  // Update main card display to the cards that was confirmed last.
-  constructURL(data.name)
-  updateMainDisplay(url);
+  // Create list item with contents using current url.
+  createListItem(currentList);
   // Click off of the modal.
   var modalBackground = document.querySelector(".modal-background");
   modalBackground.click();
 });
-})
 
 // Create event listener to bring already listed cards to the display.
 document.addEventListener("click", function (event) {
@@ -279,13 +327,19 @@ document.addEventListener("click", function (event) {
     event.stopPropagation();
     if (event.path[0].getAttribute("data-name") === null) {
       constructURL(event.path[1].getAttribute("data-name"));
-      console.log(event.path[1].getAttribute("data-foil"))
     } else {
       constructURL(event.path[0].getAttribute("data-name"));
-      console.log(event.path[0].getAttribute("data-foil"))
-
     }
-    updateMainDisplay(url);
+    if (event.path[0].getAttribute("data-foil") === "foil") {
+      foilCheck.checked = true;
+    } else if (event.path[1].getAttribute("data-foil") === "foil") {
+      foilCheck.checked = true;
+    } else if (event.path[0].getAttribute("data-foil") === "foil") {
+      foilCheck.checked = false;
+    } else if (event.path[1].getAttribute("data-foil") === "foil") {
+      foilCheck.checked = false;
+    }
+    updateMainDisplay();
   })
 
 // Update the avatar based on what username has been entered.
@@ -328,6 +382,8 @@ foilCheck.addEventListener("click", function () {
   getPrice(url);
 })
 
+saveTrade.addEventListener("click", updateLS)
+
 // Initialize the usernames and avatars.
 usernameOne.value = "User One";
 usernameTwo.value = "User Two";
@@ -341,7 +397,7 @@ fetch("https://avatars.dicebear.com/api/croodles-neutral/UserTwo.svg?background=
     avatarOne.setAttribute("src", response.url);
     avatarOne.setAttribute("alt", usernameOne);
 })
-
+loadTrade();
 
   // MVP PSEUDOCODE
 /*
