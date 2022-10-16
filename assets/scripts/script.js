@@ -398,6 +398,18 @@ fetch("https://avatars.dicebear.com/api/croodles-neutral/UserTwo.svg?background=
     avatarOne.setAttribute("alt", usernameOne);
 })
 loadTrade();
+// Theme select button
+var lightMode = document.querySelector(".light-mode");
+// Stylesheet select
+var theme = document.querySelector("#theme-link");
+
+lightMode.addEventListener("click", function() {
+  if (theme.getAttribute("href") == "assets/styles/light-theme.css") {
+    theme.href = "assets/styles/style.css";
+  } else {
+    theme.href = "assets/styles/light-theme.css";
+  }
+});
 
   // MVP PSEUDOCODE
 /*
