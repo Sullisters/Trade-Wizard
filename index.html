@@ -13,7 +13,7 @@
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/style.css" id="theme-link">
 </head>
 <body>
     <!-- Header Section -->
@@ -21,19 +21,20 @@
         <section class="level">
           <div class="level-item has-text-centered" id="card-broker">
             <div>
-              <p class="title" id="title-padding">Card Broker</p>
-              <p class="subtitle buttons has-addons">Compare your Magic the Gathering trades!</p>
+              <p class="title" id="title-padding">Trade Wizard</p>
             </div>
           </div>
           <div class="level-item level-right" id="dark-mode-button">
-                <button class="button is-small is-light is-responsive is-outlined">Save Trade</button>
-                <button class="button is-small is-light is-responsive is-outlined">Light Mode</button>
+                <button class="button is-small is-info is-responsive is-outlined">Save Trade</button>
+                <button class="button is-small is-info is-responsive is-outlined light-mode">Light Mode</button>
+                <button class="button is-small is-info is-responsive is-outlined">Info</button>
           </div>
           </section>
     </header>
     <!-- Main/Trade Section -->
     <main>
     <!-- Horizontal leveled items -->
+  
     <img src="" alt="" id='user-one-avatar'>  
     <img src="" alt="" id='user-two-avatar'>
     <div class="level is-mobile">
@@ -42,17 +43,18 @@
         <input type="text" id="username-one" value="User One">
         <!-- Clear All button -->
           <div class="buttons are-small has-addons leftButtons">
-            <button class="button is-light is-responsive is-outlined" id="clear-list-one">Clear</button>
+            <button class="button is-danger is-responsive is-outlined" id="clear-list-one">Clear</button>
         <!-- Add Card button -->
-            <button id="add-item-one" class="js-modal-trigger button is-light is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
+            <button id="add-item-one" class="js-modal-trigger button is-success is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
           </div>
       </div>
+
       <div class="level-right" id="rightContainer">
         <!-- Add Card button -->
         <div class="buttons are-small has-addons rightButtons">
-          <button id="add-item-two" class="js-modal-trigger button is-light is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
+          <button id="add-item-two" class="js-modal-trigger button is-success is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
           <!-- Clear All Button -->
-          <button class="button is-light is-responsive is-outlined" id="clear-list-two">Clear</button>
+          <button class="button is-danger is-responsive is-outlined" id="clear-list-two">Clear</button>
           <!-- Text Input and Avatar -->
           <input type="text" id="username-two" value="User Two">
         </div>
@@ -77,8 +79,8 @@
         </div>
       </div>
     <!-- Card Price -->
-    <div class="columns cardPreview">
-      <div class="column is-2 is-offset-5 cardPrice level is-mobile level is-mobile">
+    <div class="columns is-mobile cardPreview">
+      <div class="column is-2 is-offset-5 cardPrice level">
         <p id="display-card-price" class="level-item" class="level-item"></p>
       </div>
     </div>

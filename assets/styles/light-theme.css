@@ -26,7 +26,7 @@ img{
     height: auto;
 }
 body{
-    background-color: var(--dark-main);
+    background-color: var(--light-main);
     font-family: var(--p-font);
     /* font-size: var(--body-size); */
 }
@@ -63,15 +63,15 @@ main {
 .title {
     font-family: var(--heading-font);
     font-size: var(--heading-size);
-    color: var(--light-main);
-    text-shadow: 5px 5px 10px rgba(255, 255, 255, 0.445);
+    color: var(--accent-two);
+    text-shadow: 5px 5px 10px var(--accent-one);
 }
 
 .box {
     display: flex;
     flex-direction: column;
-    background-color: var(--dark-main);
-    color: var(--light-main);
+    background-color: var(--light-main);
+    color: var(--accent-two);
 }
 
 /* User List Elements */
@@ -137,6 +137,8 @@ main {
 #user-one-avatar, #user-two-avatar {
     max-width: 7.5vw;
     border-radius: 20px;
+    border: 1px solid black;
+
 }
 
 #user-one-avatar {
