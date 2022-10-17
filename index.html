@@ -4,38 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Broker</title>
+    <title>Trade Wizard</title>
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/style.css" id="theme-link">
 </head>
 <body>
     <!-- Header Section -->
     <header>
-        <section class="hero columns level">
-            <div class="hero-body">
-              <p class="title level-item">
-                Card Broker
-              </p>
-              <p class="subtitle level-item">
-                Compare your Magic the Gathering trades!
-              </p>
+        <section class="level">
+          <div class="level-item has-text-centered" id="card-broker">
+            <div>
+              <p class="title" id="title-padding">Trade Wizard</p>
             </div>
+          </div>
+          <div class="level-item level-right" id="dark-mode-button">
+                <button id="save-trade" class="button is-small is-info is-responsive is-outlined">Save</button>
+                <button class="button is-small is-info is-responsive is-outlined js-modal-trigger" data-target="help-modal">Help</button>
+                <button class="button is-small is-info is-responsive is-outlined light-mode">Light Mode</button>
+          </div>
           </section>
     </header>
     <!-- Main/Trade Section -->
     <main>
-    <!-- Search Bar -->
-    <div class="buttons are-small">
-      <button id="add-item-one" class="js-modal-trigger button is-light is-responsive" data-target="modal-js-example">Add Card</button>
-      <button id="add-item-two" class="js-modal-trigger button is-light is-responsive" data-target="modal-js-example">Add Card</button>
+    <!-- Horizontal leveled items -->
+  
+    <img src="" alt="" id='user-one-avatar'>  
+    <img src="" alt="" id='user-two-avatar'>
+    <div class="level is-mobile">
+      <div class="level-left" id="leftContainer">
+        <!-- Text Input and Avatar -->
+        <input type="text" id="username-one" value="User One">
+        <!-- Clear All button -->
+          <div class="buttons are-small has-addons leftButtons">
+            <button class="button is-danger is-responsive is-outlined" id="clear-list-one">Clear</button>
+        <!-- Add Card button -->
+            <button id="add-item-one" class="js-modal-trigger button is-success is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
+          </div>
+      </div>
+
+      <div class="level-right" id="rightContainer">
+        <!-- Add Card button -->
+        <div class="buttons are-small has-addons rightButtons">
+          <button id="add-item-two" class="js-modal-trigger button is-success is-responsive is-outlined" data-target="modal-js-example">Add Card</button>
+          <!-- Clear All Button -->
+          <button class="button is-danger is-responsive is-outlined" id="clear-list-two">Clear</button>
+          <!-- Text Input and Avatar -->
+          <input type="text" id="username-two" value="User Two">
+        </div>
+      </div> 
     </div>
+
       
       <div class="columns is-mobile">
       <!-- User 1 -->
@@ -44,7 +70,7 @@
           <ul id="card-list-one"></ul>
         </div>
       <!--Card preview-->
-        <div class="column" id="card-preview">
+        <div class="column" id="card-preview" id="card-preview">
           <img id="card-img" src="" alt="">
         </div>
       <!-- User 2 -->
@@ -54,9 +80,9 @@
         </div>
       </div>
     <!-- Card Price -->
-    <div class="columns">
-      <div class="column is-2 is-offset-5 cardPrice level is-mobile">
-        <p id="display-card-price" class="level-item"></p>
+    <div class="columns is-mobile cardPreview">
+      <div class="column is-2 is-offset-5 cardPrice level is-mobile level is-mobile">
+        <p id="display-card-price" class="level-item" class="level-item"></p>
       </div>
     </div>
     <!-- Trade Summary -->
@@ -86,28 +112,46 @@
                 <p id="price-preview"></p>
             </div>
             <form action="" id="search-form">
+                <h3>Search:</h3>
                 <input type="text" id="search-bar" placeholder="Enter a card name...">
                 <br>
-                <!-- <label for="foil-check">Foil: </label>
+                <label for="foil-check">Foil: </label>
                 <input id="foil-check" type="checkbox">
-                <br> -->
-                <!-- <label for="condition-check">Condition: </label>
-                <select name="" id="condition-check">
-                    <option value="1">Damaged</option>
-                    <option value="2">Well Played</option>
-                    <option value="3">Played</option>
-                    <option value="4">Lightly Played</option>
-                    <option value="5" selected>Mint</option>
-                </select> -->
-                <p id="confirm-card">Confirm</p>
+                <br>
+                <p class="button" id="confirm-card">Confirm</p>
             </form>
             </div>
 
           </div>
         </div>
-      
-        <button class="modal-close is-large" aria-label="close"></button>
       </div>
+      
+        <!-- SECOND MODAL -->
+        <div id="help-modal" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <h3>Welcome to Trade Wizard!</h3>
+              <br>
+              <p>(Click outside of the popup to exit.)</p>
+              <br>
+              <h4>Add card</h4>
+              <p>Pressing the "Add Card" button on either side will allow you to search your card and add it to that side. </p>
+              <br>
+              <h4>Remove</h4>
+              <p>Hit the "Remove" button next to any card to remove it from the trade.</p>
+              <br>
+              <h4>Clear</h4>
+              <p>The "Clear" button will remove all cards on one side of the trade.</p>
+              <br>
+              <h4>Save</h4>
+              <p>The "Save" button will save your trade to your computer so you can pick it up later.</p>
+              <br>
+            </div>
+            <!-- Any other Bulma elements you want -->
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
     <!-- JS Link -->
    <script src="./assets/scripts/script.js"></script>
 </body>
