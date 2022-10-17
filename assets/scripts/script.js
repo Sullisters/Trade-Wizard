@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
       $el.classList.add('is-active');
-      
+      foilCheck.checked = false;
         }
   
     function closeModal($el) {
@@ -409,8 +409,10 @@ loadTrade();
 lightMode.addEventListener("click", function() {
   if (theme.getAttribute("href") == "assets/styles/light-theme.css") {
     theme.href = "assets/styles/style.css";
+    lightMode.textContent = "Light"
   } else {
     theme.href = "assets/styles/light-theme.css";
+    lightMode.textContent = "Dark"
   }
 });
 
