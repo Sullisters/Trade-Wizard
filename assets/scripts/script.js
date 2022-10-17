@@ -181,7 +181,7 @@ function createListItem(currentList) {
   // Set list item content.
   newName.textContent = data.name;
   newPrice.textContent = "$" + currentPrice;
-  removeItem.textContent = "Delete";
+  removeItem.textContent = "Remove";
   removeItem.addEventListener("click", deleteItem)
   // Gives each list item a copy of its url as data-url
   newCard.setAttribute("data-name", data.name);
@@ -247,10 +247,7 @@ function loadTrade() {
       } else {
         foilCheck.checked = false;
       }
-      console.log(storedCard.side)
-      console.log(storedCard.url)
       if (storedCard.side === 2) {
-        console.log("hitting");
         currentList = cardListTwo;
       }
       createListItem(currentList);
@@ -285,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
       $el.classList.add('is-active');
-      
+      foilCheck.checked = false;
         }
   
     function closeModal($el) {
@@ -318,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // When a user confirms their card choice in the modal view.
 confirmCard.addEventListener("click", function () {
+  constructURL(searchBar.value);
   // Create list item with contents using current url.
   createListItem(currentList);
   // Click off of the modal.
@@ -336,12 +334,16 @@ document.addEventListener("click", function (event) {
     }
     if (event.path[0].getAttribute("data-foil") === "foil") {
       foilCheck.checked = true;
+      console.log("true");
     } else if (event.path[1].getAttribute("data-foil") === "foil") {
       foilCheck.checked = true;
-    } else if (event.path[0].getAttribute("data-foil") === "foil") {
+      console.log("true");
+    } else if (event.path[0].getAttribute("data-foil") === "non-foil") {
+      console.log("false");
       foilCheck.checked = false;
-    } else if (event.path[1].getAttribute("data-foil") === "foil") {
+    } else if (event.path[1].getAttribute("data-foil") === "non-foil") {
       foilCheck.checked = false;
+      console.log("false");
     }
     updateMainDisplay();
   })
@@ -407,8 +409,10 @@ loadTrade();
 lightMode.addEventListener("click", function() {
   if (theme.getAttribute("href") == "assets/styles/light-theme.css") {
     theme.href = "assets/styles/style.css";
+    lightMode.textContent = "Light"
   } else {
     theme.href = "assets/styles/light-theme.css";
+    lightMode.textContent = "Dark"
   }
 });
 
