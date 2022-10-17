@@ -263,7 +263,14 @@ header {
     align-items: center;
 }
 
-
+#search-bar {
+    font-family: var(--p-font), cursive;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #eee;
+    padding: .5vh 0;
+}
 
 /* Gradients */
 #gradient-one{
