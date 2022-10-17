@@ -3,7 +3,7 @@
 :root {
     /* COLORS */
     --light-main: #fff;
-    --dark-main: rgb(48, 49, 54);
+    --dark-main: rgb(39, 39, 43);
     --accent-one: rgb(130, 10, 141);
     --accent-two: rgba(245, 140, 255, 0.89);
     --type-light: ;
@@ -214,6 +214,7 @@ header {
 
 #form-contain {
     /* Layout */
+    height: 100%;
     width: 100%;
     /* Display Settings */
     display: flex;

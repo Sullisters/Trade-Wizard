@@ -162,6 +162,7 @@ function createListItem(currentList) {
   var newName = document.createElement("p");
   var newPrice = document.createElement("p");
   var removeItem = document.createElement("button");
+  console.log(newCard);
   // Store the url in the list item
   newCard.setAttribute("data-url", "https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy="+ data.name)
   // If they checked the foil box, set the price we use to foil.
@@ -318,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // When a user confirms their card choice in the modal view.
 confirmCard.addEventListener("click", function () {
+  constructURL(searchBar.value);
   // Create list item with contents using current url.
   createListItem(currentList);
   // Click off of the modal.
