@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Broker</title>
+    <title>Trade Wizard</title>
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- Custom CSS -->
@@ -25,9 +26,9 @@
             </div>
           </div>
           <div class="level-item level-right" id="dark-mode-button">
-                <button id="save-trade" class="button is-small is-info is-responsive is-outlined">Save Trade</button>
+                <button id="save-trade" class="button is-small is-info is-responsive is-outlined">Save</button>
+                <button class="button is-small is-info is-responsive is-outlined js-modal-trigger" data-target="help-modal">Help</button>
                 <button class="button is-small is-info is-responsive is-outlined light-mode">Light Mode</button>
-                <button class="button is-small is-info is-responsive is-outlined">Info</button>
           </div>
           </section>
     </header>
@@ -117,23 +118,40 @@
                 <label for="foil-check">Foil: </label>
                 <input id="foil-check" type="checkbox">
                 <br>
-                <!-- <label for="condition-check">Condition: </label>
-                <select name="" id="condition-check">
-                    <option value="1">Damaged</option>
-                    <option value="2">Well Played</option>
-                    <option value="3">Played</option>
-                    <option value="4">Lightly Played</option>
-                    <option value="5" selected>Mint</option>
-                </select> -->
                 <p class="button" id="confirm-card">Confirm</p>
             </form>
             </div>
 
           </div>
         </div>
-      
-        <button class="modal-close is-large" aria-label="close"></button>
       </div>
+      
+        <!-- SECOND MODAL -->
+        <div id="help-modal" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <h3>Welcome to Trade Wizard!</h3>
+              <br>
+              <p>(Click outside of the popup to exit.)</p>
+              <br>
+              <h4>Add card</h4>
+              <p>Pressing the "Add Card" button on either side will allow you to search your card and add it to that side. </p>
+              <br>
+              <h4>Remove</h4>
+              <p>Hit the "Remove" button next to any card to remove it from the trade.</p>
+              <br>
+              <h4>Clear</h4>
+              <p>The "Clear" button will remove all cards on one side of the trade.</p>
+              <br>
+              <h4>Save</h4>
+              <p>The "Save" button will save your trade to your computer so you can pick it up later.</p>
+              <br>
+            </div>
+            <!-- Any other Bulma elements you want -->
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
     <!-- JS Link -->
    <script src="./assets/scripts/script.js"></script>
 </body>
