@@ -162,7 +162,6 @@ function createListItem(currentList) {
   var newName = document.createElement("p");
   var newPrice = document.createElement("p");
   var removeItem = document.createElement("button");
-  console.log(newCard);
   // Store the url in the list item
   newCard.setAttribute("data-url", "https://api.scryfall.com/cards/named?order=usd&unique=prints&fuzzy="+ data.name)
   // If they checked the foil box, set the price we use to foil.
@@ -182,7 +181,7 @@ function createListItem(currentList) {
   // Set list item content.
   newName.textContent = data.name;
   newPrice.textContent = "$" + currentPrice;
-  removeItem.textContent = "Delete";
+  removeItem.textContent = "Remove";
   removeItem.addEventListener("click", deleteItem)
   // Gives each list item a copy of its url as data-url
   newCard.setAttribute("data-name", data.name);
@@ -248,10 +247,7 @@ function loadTrade() {
       } else {
         foilCheck.checked = false;
       }
-      console.log(storedCard.side)
-      console.log(storedCard.url)
       if (storedCard.side === 2) {
-        console.log("hitting");
         currentList = cardListTwo;
       }
       createListItem(currentList);
@@ -338,12 +334,16 @@ document.addEventListener("click", function (event) {
     }
     if (event.path[0].getAttribute("data-foil") === "foil") {
       foilCheck.checked = true;
+      console.log("true");
     } else if (event.path[1].getAttribute("data-foil") === "foil") {
       foilCheck.checked = true;
-    } else if (event.path[0].getAttribute("data-foil") === "foil") {
+      console.log("true");
+    } else if (event.path[0].getAttribute("data-foil") === "non-foil") {
+      console.log("false");
       foilCheck.checked = false;
-    } else if (event.path[1].getAttribute("data-foil") === "foil") {
+    } else if (event.path[1].getAttribute("data-foil") === "non-foil") {
       foilCheck.checked = false;
+      console.log("false");
     }
     updateMainDisplay();
   })

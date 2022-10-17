@@ -47,12 +47,13 @@ li {
     border: 1px solid black;
     /* Flex Settings */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: right;
     align-items: center;
 }
 
 li p {
     text-shadow: 2px 2px 2px black;
+    margin-right: 1vw;
 }
 
 main {

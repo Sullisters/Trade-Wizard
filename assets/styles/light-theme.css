@@ -215,6 +215,7 @@ header {
 
 #form-contain {
     /* Layout */
+    height: 100%;
     width: 100%;
     /* Display Settings */
     display: flex;
