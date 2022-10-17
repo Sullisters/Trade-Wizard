@@ -48,6 +48,10 @@ var tradeDiffDisplay = document.getElementById("trade-diff");
 var tradeSumBackground = document.querySelector(".tradeSummary")
 var userOneTotalDisplay = document.getElementById("user-one-total")
 var userTwoTotalDisplay = document.getElementById("user-two-total")
+// Theme select button
+var lightMode = document.querySelector(".light-mode");
+// Stylesheet select
+var theme = document.querySelector("#theme-link");
 
 
 // FUNCTIONS --------------------------------------------------------------
@@ -398,10 +402,7 @@ fetch("https://avatars.dicebear.com/api/croodles-neutral/UserTwo.svg?background=
     avatarOne.setAttribute("alt", usernameOne);
 })
 loadTrade();
-// Theme select button
-var lightMode = document.querySelector(".light-mode");
-// Stylesheet select
-var theme = document.querySelector("#theme-link");
+
 
 lightMode.addEventListener("click", function() {
   if (theme.getAttribute("href") == "assets/styles/light-theme.css") {

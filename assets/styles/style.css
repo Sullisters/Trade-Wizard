@@ -58,13 +58,14 @@ li p {
 main {
     height: 100vh;
 }
+
 /* Class Styling */
 
 .title {
     font-family: var(--heading-font);
-    font-size: var(--heading-size);
+    font-size: 2.5rem;
     color: var(--light-main);
-    text-shadow: 5px 5px 10px rgba(255, 255, 255, 0.445);
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.445);
 }
 
 .box {
@@ -72,6 +73,10 @@ main {
     flex-direction: column;
     background-color: var(--dark-main);
     color: var(--light-main);
+}
+
+header {
+    padding: 2.3vh 0;
 }
 
 /* User List Elements */
@@ -142,11 +147,13 @@ main {
 #user-one-avatar {
     position: relative;
     left: 2vw;
+    border: 3px solid black;
 }
 
 #user-two-avatar {
     position: absolute;
     right: 2vw;
+    border: 3px solid black;
 }
 
 #leftContainer {
@@ -164,12 +171,24 @@ main {
     position: relative;
     padding: 4px;
     margin: 0 5vw 0 0;
+    border-radius: 2vh;
+    font-family: 'Patrick Hand', cursive;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #eee;
 }
 
 #username-two {
     position: relative;
     padding: 4px;
     margin: -7px 0 0 5vw;
+    border-radius: 2vh;
+    font-family: 'Patrick Hand', cursive;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #eee;
 }
 /* Modal */
 
