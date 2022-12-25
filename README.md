@@ -1,7 +1,7 @@
 # Trade Wizard
 
 ## Description
-[Trade Wizard](https://sullisters.github.io/card-broker/) is an app intended to make it easy and efficient for people to trade Magic The Gathering playing cards.
+[Trade Wizard](https://sullisters.github.io/Trade-Wizard/) is an app intended to make it easy and efficient for people to trade Magic The Gathering playing cards.
 
 ## Installation
 N/A
